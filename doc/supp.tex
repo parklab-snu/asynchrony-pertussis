@@ -223,10 +223,24 @@ I_m(0) &= N_m i_m(0).
 We simultaneously fit this model time series data between May 2024 and March 2025 from all municipalities with more than 400 total cases (a total of 42 municipalities) using a Bayesian inference software rstan \citep{carpenter2017stan}.
 
 To assess the model fit, we compute R squared values for each municipality. 
-This is done by calculating the squared value of the correlation coefficient between logged values of the observed cases and a posterior median of the logged predictions $\rho_m \Delta S_m(t)$.
+This is done by calculating the squared value of the correlation coefficient between logged values of the observed cases+1 and a posterior median of the logged predictions $\rho_m \Delta S_m(t)$.
 
 Finally, we evaluate the impact of initial conditions on pertussis epidemic dynamics by varying $s(0)$ between $0.13$ and $0.23$ and $i(0)$ between $7\times 10^{-6}$ and $1.5\times 10^{-3}$.
 For each simulation, we quantify the center of gravity.
+
+\subsection*{S6 Transmission model validation}
+
+We validate our model by fitting the model to remaining municipalities (i.e., those with less than 400 total cases).
+In doing so, we assume that changes in transmission rate $\delta(t)$ is known and only estimate the initial conditions, $s_m(0)$ and $i_m(0)$, as well as the reporting rate $\rho$.
+For this validation, we simply used the optimization function in rstan \citep{carpenter2017stan} rather than performing a full Bayesian inference.
+Then, we compute R squared values for each municipality in the same way as before.
+
+\subsection*{S7 Relationshiip between estimated initial susceptible and vaccine coverage}
+
+We assessed the relationshiip between estimated initial susceptible and vaccine coverage using linear regression.
+Specifically, assuming that the waning of vaccinal immunity is the main cause for pertussis re-emergence, we compared DTaP (Diphtheria-Tetanus-Pertussis) vaccine coverage for 3 years old as of 2015 and the estimated initial susceptible in each municipality and performed a linear regression.
+We used vaccine coverage as of 2015 because this was the oldest data that were publicly available.
+We considered using estimates from municipalities with $>400$ cases, since the parameter estimates are expected to be more reliable, but were unable to find any clear signature between vaccine coverage and estimated $s(0)$.
 
 \pagebreak
 
@@ -244,14 +258,27 @@ Time series are arranged based on their approximate locations.
 
 \pagebreak
 
-
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{../figure/figure_stanfit_all_delta.pdf}
 \caption{
-\textbf{Validation .}
-Time series are arranged based on their approximate locations.
+\textbf{Validation of our transmission model using time series data from municipalities with less than 400 total cases.}
+(A) Comparisons between the observed and predicted epidemic dynamics across municipalities with less than 400 total cases, ordered by latitude.
+(B) The bar plot represents the distribution of R squared values for model fits.
+The vertical dashed line represents the median.
 }
 \end{figure}
+
+\pagebreak
+
+\begin{figure}[!th]
+\includegraphics[width=\textwidth]{../figure/figure_stanfit_all_S0.pdf}
+\caption{
+\textbf{Relationship between estimated initial susceptible and vaccine coverage for (A) municipalities with $>400$ cases and (B) for all municipalities.}
+Each point represents the estimate initial susceptible and vaccine coverage value for each municipality.
+Red lines and shaded regions represent the linear regression fit and corresponding 95\% confidence intervals.
+}
+\end{figure}
+
 
 
 \pagebreak

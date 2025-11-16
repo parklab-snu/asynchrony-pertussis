@@ -122,7 +122,7 @@ Ecological theory predicts that spatial coupling---via shared environmental forc
 Consistent with this theory, large-scale spatial synchrony has been observed across diverse pathogens, including measles \citep{grenfell2001travelling}, dengue \citep{cummings2004travelling}, influenza \citep{viboud2006synchrony}, RSV \citep{baker2019epidemic}, and SARS-CoV-2 \citep{paton2022rapid}, highlighting the ubiquity of spatial coupling in shaping epidemic dynamics.
 
 Between 2024 and 2025, an unprecedented large pertussis outbreak occurred in Korea, resulting in more than 50,000 cases by early 2025 (Figure 1) \citep{kim2025pertussis}.
-This outbreak marked a dramatic increase in the disease compared to 292 cases reported in 2023 and 21 cases reported in 2022, despite high vaccine coverage (91.1\% of identified 2024 cases had a known vaccination history) \citep{kim2025pertussis}.
+This outbreak marked a dramatic increase in the disease compared to 292 cases reported in 2023 and 21 cases reported in 2022, despite high vaccine coverage (91.1\% of identified 2024 cases had a known vaccination history) \citep{kang2024pertussis,kim2025pertussis}.
 The outbreak consisted of two waves that peaked around late July and December 2024 (Figure 1A) and exhibited large spatial heterogeneity in timing (Figure 1B,C) and magnitude (Figure 1D).
 For example, both Seoul, the capital city located in the northwest region, and Busan, the second most populated city located at the southeast end, experienced two waves, whereas Daegu, the fourth most populated city located $<100$km away from Busan, only experienced the second wave (Figure 1C; see Figure S1 for epidemic dynamics in other regions).
 This pronounced asynchrony deviates from our expectations based on spatial coupling, raising questions about mechanisms driving this fine-scale spatiotemporal heterogeneity in pertussis epidemic \citep{duke2011strong}.
@@ -215,6 +215,7 @@ Taken together, the analysis of center of gravity and $\mathcal R(t)$ suggest th
 To test whether variation in introduction timing and susceptible dynamics alone can explain the observed epidemic patterns, we extended a standard susceptible-exposed-infected-removed (SEIR) model \citep{rohani2010contact} to jointly estimated a single, time-varying transmission term, which is shared across all regions.
 We also allowed spatial variation in initial susceptible $S(0)$ and infected $I(0)$ fraction as well as the reporting rate $\rho$.
 Variation in $S(0)$ captures differences in population-level susceptibility, whereas variation in $I(0)$ effectively captures differences in introduction timing.
+For this analysis, we also focus on municipalities with more than 400 total cases.
 The model is fitted using a Bayesian inference software rstan \citep{carpenter2017stan}.
 
 Our simple transmission model that assume shared transmission rate can capture fine-scale spatiotemporal variation of pertussis outbreak in Korea (Figure 3A) with a median R squared value of 0.86 (95\% quantile: 0.71---0.91).
@@ -229,6 +230,11 @@ This is because high levels of susceptibility allows for a large first wave, whi
 Finally, we estimate that the large reduction in transmission around late July 2024 and late January 2025 allowed the occurrence of two distinct epidemic waves (Figure 3F).
 this estimated timing of transmission reduction is consistent with our estimates from the $\mathcal R(t)$ analysis and coincide with the timing of school holidays in Korea.
 
+We validate our model by taking the estimated transmission term and fitting the remaining parameters (i.e., initial infected, initial susceptible, and reporting probability) to data from the remaining 210 municipalities with less than 400 total cases (Figure S2).
+While model predictions appear consistent with the observed patterns (Figure S2A),
+we estimate a lower value for the median R squared: 0.58 (95\% quantile: 0.04--0.87; Figure S2B).
+Nonetheless, our analysis suggests that the majority of asynchrony in pertussis epidemics can be explained via the differences in introduction timing and initial susceptibility.
+
 \section*{Summary}
 
 Understanding mechanisms that drive spatiotemporal variation in epidemic dynamics is a major aim for infectious disease dynamics and control 
@@ -237,16 +243,29 @@ The large pertussis outbreaks in Korea that occurred between 2024 and 2025 prese
 some municipalities experienced two epidemic waves while other places experienced only the first or second without a clear patterns of synchrony.
 We propose that this variation can be explained by the differences in introduction delays and initial susceptibility, where high levels of susceptibility can cause a large first wave and prevent the second wave through susceptible depletion.
 Incorporating this idea into a simple transmission model by allowing for a joint estimation of a single transmission rate with variation in initial epidemic conditions confirms our hypothesis.
+Together, these findings demonstrate that differences in initial epidemic conditions---rather than variation in transmission---can generate fine-scale asynchrony, offering a general framework for understanding the spatiotemporal dynamics of re-emerging infections.
 
 \section*{Caveats and future directions}
 
 Even though our model explains the observed dynamics reasonably well, there are several limitations to our work.
-First, our model is purely deterministic and does not account for stochasticity, which is likely an important factor for characterizing the establishment of infections after the initial invasion.
+First, our model is purely deterministic and does not account for stochasticity, which is likely an important factor for characterizing the establishment of infections after the initial invasion and the subsequent dynamics, especially in small populations \citep{finkenstadt2002stochastic,lloyd2005superspreading,magpantay2016pertussis}.
+Second, we estimated that a variation in susceptibility can explain the observed epidemic patterns, but we were unable to identify the mechanism that explains this variation.
+For example, we hypothesized that past vaccine coverage would explain variation in susceptibility given the role of waning immunity in driving pertussis re-emergence \citep{wearing2009estimating,tan2015pertussis,domenech2018impact}, but we did not find a significant correlation (Figure S3).
 
+Our parameter estimates must be interpreted with care as our model relies on several simplifying assumptions.
+For example, we assumed the same values of basic reproduction number $\mathcal R_0$ across all municipalities.
+Therefore, any regional variation in $\mathcal R_0$, driven by differences in contact rates and age distributions would be captured in our estimate of the initial susceptible fraction.
+In other words, our estimated susceptible fraction should be interpreted as the effective susceptibility that also captures behavioral and sociological factors, beyond immunological differences.
+We also did not consider an age structure in our model, but age-structured contact patterns play an important role in shaping pertussis transmission \citep{rohani2010contact}.
+For example, \cite{cho2024pertussis} recently suggested transmission among elderly may contributed to the persistence of pertussis in Korea.
+Despite these limitations, our work provides a quantitative foundation and empirical evidence for understanding epidemic asynchrony.
 
 \section*{Conclusion}
 
-The continued re-emergence of vaccine preventable infections, including pertussis, highlights the importance of identifying hotspots of future outbreaks and .
+The continued emergence of new pathogens and re-emergence of vaccine preventable infections, such as pertussis, highlights the importance of identifying hotspots of future outbreaks and developing targetted intervention strategies \citep{heymann2001hot,naguib2020towards,nguyen2022enterovirus}.
+The apparent asynchrony in pertussis epidemic in Korea, driven by the differences in introduction timing and population-level susceptibility, underlines the importance of detailed pathogen surveillance for early detection and strategic allocation of prevention and control resources..
+Immunological surveillance platforms will be particularly useful for evaluating potential risk of pathogen re-emrgence in the future \citep{mina2020global,nguyen2025dynamics}.
+A detailed understanding of saptial variation in population-level immunity will be crucial for predicting spatiotemporal dynamics of future outbreaks.
 
 \bibliography{whooping-cough}
 
