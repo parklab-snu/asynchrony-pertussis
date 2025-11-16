@@ -1,0 +1,235 @@
+\documentclass[12pt]{article}
+% \usepackage[top=1in,left=1in, right = 1in, footskip=1in]{geometry}
+\usepackage[top=1in,footskip=1in]{geometry}
+
+\usepackage{graphicx}
+\usepackage{xspace}
+%\usepackage{adjustbox}
+
+\usepackage{multirow}
+\usepackage{booktabs}
+
+\usepackage{pdflscape}
+
+\usepackage{grffile}
+
+\newcommand{\comment}{\showcomment}
+%% \newcommand{\comment}{\nocomment}
+
+\newcommand{\showcomment}[3]{\textcolor{#1}{\textbf{[#2: }\textsl{#3}\textbf{]}}}
+\newcommand{\nocomment}[3]{}
+
+\newcommand{\jd}[1]{\comment{cyan}{JD}{#1}}
+\newcommand{\swp}[1]{\comment{magenta}{SWP}{#1}}
+\newcommand{\bmb}[1]{\comment{blue}{BMB}{#1}}
+\newcommand{\djde}[1]{\comment{red}{DJDE}{#1}}
+
+\newcommand{\eref}[1]{Eq.~(\ref{eq:#1})}
+\newcommand{\fref}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\Fref}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\sref}[1]{Sec.~\ref{#1}}
+\newcommand{\frange}[2]{Fig.~\ref{fig:#1}--\ref{fig:#2}}
+\newcommand{\tref}[1]{Table~\ref{tab:#1}}
+\newcommand{\tlab}[1]{\label{tab:#1}}
+\newcommand{\seminar}{SE\mbox{$^m$}I\mbox{$^n$}R}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc} % make sure fancy dashes etc. don't get dropped
+
+\usepackage{lineno}
+\linenumbers
+
+\usepackage[pdfencoding=auto, psdextra]{hyperref}
+
+\usepackage{natbib}
+\bibliographystyle{unsrt}
+\date{\today}
+
+\usepackage{xspace}
+\newcommand*{\ie}{i.e.\@\xspace}
+
+\usepackage{color}
+
+\newcommand{\Rx}[1]{\ensuremath{{\mathcal R}_{#1}}\xspace} 
+\newcommand{\RR}{\ensuremath{{\mathcal R}}\xspace}
+\newcommand{\Rres}{\Rx{\mathrm{res}}}
+\newcommand{\Rinv}{\Rx{\mathrm{inv}}}
+\newcommand{\Rhat}{\ensuremath{{\hat\RR}}}
+\newcommand{\Rt}{\ensuremath{{\mathcal R}(t)}\xspace}
+\newcommand{\tsub}[2]{#1_{{\textrm{\tiny #2}}}}
+\newcommand{\dd}[1]{\ensuremath{\, \mathrm{d}#1}}
+\newcommand{\dtau}{\dd{\tau}}
+\newcommand{\dx}{\dd{x}}
+\newcommand{\dsigma}{\dd{\sigma}}
+
+\newcommand{\rx}[1]{\ensuremath{{r}_{#1}}\xspace} 
+\newcommand{\rres}{\rx{\mathrm{res}}}
+\newcommand{\rinv}{\rx{\mathrm{inv}}}
+
+\newcommand{\psymp}{\ensuremath{p}} %% primary symptom time
+\newcommand{\ssymp}{\ensuremath{s}} %% secondary symptom time
+\newcommand{\pinf}{\ensuremath{\alpha_1}} %% primary infection time
+\newcommand{\sinf}{\ensuremath{\alpha_2}} %% secondary infection time
+
+\newcommand{\psize}{{\mathcal P}} %% primary cohort size
+\newcommand{\ssize}{{\mathcal S}} %% secondary cohort size
+
+\newcommand{\gtime}{\tau_{\rm g}} %% generation interval
+\newcommand{\gdist}{g} %% generation-interval distribution
+\newcommand{\idist}{\ell} %% incubation-period distribution
+
+\newcommand{\total}{{\mathcal T}} %% total number of serial intervals
+
+\usepackage{lettrine}
+
+\newcommand{\dropcapfont}{\fontfamily{lmss}\bfseries\fontsize{26pt}{28pt}\selectfont}
+\newcommand{\dropcap}[1]{\lettrine[lines=2,lraise=0.05,findent=0.1em, nindent=0em]{{\dropcapfont{#1}}}{}}
+
+\begin{document}
+
+\begin{flushleft}{
+	\Large
+	\textbf\newline{
+    Supplementary Materials for: Delayed introduction and susceptible variation drive spatial asynchrony in pertussis epidemics
+	}
+}
+\newline
+\\
+Sang Woo Park\textsuperscript{1,*}
+\\
+\bigskip
+\textbf{1} School of Biological Sciences, Seoul National University, Seoul, Korea
+\bigskip
+
+*Corresponding author: sangwoopark@snu.ac.kr
+\end{flushleft}
+
+\section*{Materials and Methods}
+
+\subsection*{S1 Data}
+
+The weekly surveillance data on pertussis cases across 252 municipalities (1st week of 2024 to the 44th week of 2025) were obtained from a publicly available website, the Infectious Disease Portal, by the Korea Disease Control and Prevention Agency \citep{kordata}.
+Population size data as of September 2025 were obtained from publicly available website by the Ministry of the Interior and Safety \citep{kordata2}.
+Vaccine coverage data were obtained from a publicly available website by the Korea Disease Control and Prevention Agency \citep{kordata3}.
+Longitude and latitude data for each municipality were obtained from a publicly available GitHub repository \citep{github1}.
+Finally, shape files used for constructing maps were obtained from a publicly available website \citep{shape}.
+
+\subsection*{S2 Center of gravity}
+
+We quantified the center of gravity to characterize variation in the mean timing of epidemic.
+Typically, the center of gravity is calculated based on annual incidence for recurrent epidemics.
+Since we are focused on analyzing a single outbreak, we use the entire time series of reported cases $C_t$ to computer the center of gravity for each municipality:
+\begin{equation}
+\textrm{Center of gravity}=\frac{\sum_{t=1}^{\tsub{t}{max}} C_t \times t}{\sum_{t=1}^{\tsub{t}{max}} C_t}.
+\end{equation}
+We then calculate the correlation coefficient between the center of gravity and the timing of introduction, defined as the first week when the number of reported cases is greater than 1 in 100,000.
+
+\subsection*{S3 Spatial synchrony of reported cases}
+
+We characterized the spatial synchrony of pertussis epidemic, which captures changes in pairwise correlation as a function of distance \citep{grenfell2001travelling}. 
+We used logged values of reported cases between May 2024 and March 2025, excluding municipalities that had no reported cases ($n=250$).
+Spatial synchrony was calculated using the \texttt{ncf} package in R \citep{ncf}.
+We used 1,000 bootstraps to generate the median estimate and the corresponding 95\% confidence intervals.
+
+\subsection*{S4 Effective reproduction number}
+
+We calculated the effective reproduction number $\mathcal R(t)$ to characterize changes in pertussis transmission over time. 
+First, we took the case time series $C_t$ and fitted a generalized additive model assuming a Poisson error to smooth the time series. 
+Then, we estimated $\mathcal R(t)$ using the method of \citep{cori2013new}:
+\begin{equation}
+\mathcal R(t) = \frac{i(t)}{\sum_{k=1}^n i(t-k) g(k)},
+\end{equation}
+where $i(t)$ is the smoothed incidence and $n$ is the maximum length of generation interval in weeks (assumed to be 5 weeks).
+The generation-interval distribution $g(k)$ is assumed to follow a gamma distribution with a mean of 9.47 days and a standard deviation of 6.22 days.
+The reproduction number estimates can be unrealistically high when the number of infections is close to zero. 
+Therefore, we only use estimates between May 2024 and March 2025 throughout the paper.
+We truncated all $\mathcal{R}(t)$ estimates exceeding 5 to a maximum value of 5.
+
+First, we compared correlation coefficients between $\mathcal R(t)$ estimates and those between logged cases across all pairwise municipality combinations (Figure 2B in the main text).
+For this analysis, we only use data from municipalities with more than 400 total cases.
+Then, we compared the spatial synchrony for $\mathcal R(t)$ estimates and synchrony for logged cases (Figure 2C in the main text).
+For this analysis, we used $\mathcal R(t)$ estimates from all municipalities without any exclusion.
+
+Finally, we fitted a generalized additive model to logged values of $\mathcal R(t)$ to quantify the effect of susceptible depletion and temporal variation in intrinsic transmission \citep{te2013driving,kissler2020projecting}:
+\begin{equation}
+\log \left(\mathcal R_{t,m}\right) = \alpha_m + \beta d_{t,m} + s(t),
+\end{equation}
+where $\mathcal R_{t,m}$ represents $\mathcal R(t)$ estimate at time $t$ in municipality $m$;
+$\alpha_m$ represents the municipality-specific intercept term;
+$\beta$ represents the effect of susceptible depletion;
+$d_{t,m}$ represents the cumulative cases at time $t$ in municipality $m$;
+and $s(t)$ represents the smooth term capturing temporal variation in transmission. 
+For this analysis, we only use $\mathcal R(t)$ estimates from municipalities with more than 400 total cases.
+
+\subsection*{S5 Transmission model}
+
+Finally, we fitted a simple transmission model using Bayesian inference to test whether variation in introduction timing and susceptible dynamics alone can explain the observed epidemic patterns.
+Specifically, we extended the SEIR model, which is commonly used for pertussis transmission \citep{rohani2010contact}, to allow for a joint estimation of a single, time-varying transmission term that is shared across all regions and a separate estimation of initial conditions and reporting rates.
+To do so, we first discretized the SEIR model following the approach of \cite{he2010plug}:
+\begin{align}
+\beta (t) &= \mathcal R_0 (1-\exp(-\gamma\Delta t)) \delta(t)\\
+\textrm{FOI}(t) &= \frac{\beta (t) I_m(t-\Delta t)}{N_m}\\
+\Delta S_m(t) &= \left[1- \exp(-\textrm{FOI}(t) \Delta t)\right] S_m(t-\Delta t)\\
+\Delta E_m(t) &= \left[1- \exp(-\sigma \Delta t)\right] E_m(t-\Delta t)\\
+\Delta I_m(t) &= \left[1- \exp(-\gamma \Delta t)\right] I_m(t-\Delta t)\\
+S_m(t) &= S(t-\Delta t) -\Delta S_m(t)\\
+E_m(t) &= E(t-\Delta t) -\Delta E_m(t) + \Delta S_m(t)\\
+I_m(t) &= I(t-\Delta t) -\Delta I_m(t) + \Delta E_m(t)
+\end{align}
+where $S_m(t)$, $E_m(t)$, and $I_m(t)$ represent the number of susceptible, exposed, and infectious individuals in municipality $m$ at time $t$, respectively;
+$N_m$ represents the population size of municipality $m$;
+$\Delta t$ represents the simulation time step, which assumed to be 1 week;
+$\beta (t)$ represents the shared time-varying transmission rate;
+$\mathcal R_0$ represents the shared basic reproduction number, assumed to equal 17 \citep{anderson1991infectious};
+$\delta(t)$ represents the normalized time-varying transmission rate;
+$\sigma$ represents the rate at which individuals develop infectiousness, which is assumed to be $\sigma=-\log(1-7/8)$ such that the mean latent period is 8 days;
+and $\gamma$ represents the rate at which individuals recover, which is assumed to be $\sigma=-\log(1-7/15)$ such that the mean latent period is 15 days.
+
+Here, we modeled changes in transmission using the $\delta(t)$ term, which is given a normal prior around 1:
+\begin{equation}
+\delta(t) \sim \mathrm{Normal}(1, 0.2).
+\end{equation}
+To allow for smooth variation in transmission, we also incorporated a random walk prior:
+\begin{align}
+\delta(t) &\sim \mathrm{Normal}(\delta(t-\Delta t), \sigma_\delta),\\
+\sigma_\delta &\sim \textrm{Half-Normal}(0, 0.1),
+\end{align}
+where a half-normal prior on $\sigma_\delta$ constrains the smoothness of $\delta(t)$.
+
+The municipality-specific observation process is modeled based on a Poisson distribution:
+\begin{align}
+\mathrm{cases}_{t,m} &\sim \mathrm{Poisson}(\rho_m \Delta S_m(t))\\
+\rho_m &\sim \textrm{Uniform}(0, 1)
+\end{align}
+where $\mathrm{cases}_{t,m}$ represents the reported cases at time $t$ in municipality $m$;
+$\rho_m$ represents the municipality-specific reporting rate;
+and $\Delta S_m(t)$ represents the expected number of new infections between time $t-\Delta t$ and $t$.
+
+Finally, we estimate a municipality-specific initial conditions by imposing the following priors:
+\begin{align}
+s_m(0) &\sim \textrm{Uniform}(0, 1),\\
+i_m(0) &\sim \textrm{Half-Normal}(0, 0.001),
+\end{align}
+where $s_m(0)$ represents the initial fraction susceptible in municipality $m$, and $i_m(0)$ represents the initial fraction infected in municipality $m$.
+Then, the initial conditions for the model is specified as follows:
+\begin{align}
+S_m(0) &= N_m s_m(0),\\
+E_m(0) &= N_m i_m(0),\\
+I_m(0) &= N_m i_m(0).
+\end{align}
+We simultaneously fit this model time series data between May 2024 and March 2025 from all municipalities with more than 400 total cases (a total of 42 municipalities) using a Bayesian inference software rstan \citep{carpenter2017stan}.
+
+To assess the model fit, we compute R squared values for each municipality. 
+This is done by calculating the squared value of the correlation coefficient between logged values of the observed cases and a posterior median of the logged predictions $\rho_m \Delta S_m(t)$.
+
+Finally, we evaluate the impact of initial conditions on pertussis epidemic dynamics by varying $s(0)$ between $0.13$ and $0.23$ and $i(0)$ between $7\times 10^{-6}$ and $1.5\times 10^{-3}$.
+For each simulation, we quantify the center of gravity.
+
+\pagebreak
+
+\bibliography{whooping-cough}
+
+\end{document}
