@@ -98,7 +98,6 @@ g2 <- ggplot(cordata) +
   )
 
 gfit <- gam(log(R)~-1+region+ccases+s(time), data=analysis_R_t_filter)
-# -0.0011864
 gfit_summ <- summary(gfit)
 
 intercept <- data.frame(

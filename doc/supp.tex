@@ -137,7 +137,7 @@ We used 1,000 bootstraps to generate the median estimate and the corresponding 9
 \subsection*{S4 Effective reproduction number}
 
 We calculated the effective reproduction number $\mathcal R(t)$ to characterize changes in pertussis transmission over time. 
-First, we took the case time series $C_t$ and fitted a generalized additive model assuming a Poisson error to smooth the time series. 
+First, we took the case time series $C_t$ and fitted a generalized additive model assuming a Poisson error to smooth the time series \citep{wood2017generalized}. 
 Then, we estimated $\mathcal R(t)$ using the method of \citep{cori2013new}:
 \begin{equation}
 \mathcal R(t) = \frac{i(t)}{\sum_{k=1}^n i(t-k) g(k)},
@@ -153,7 +153,7 @@ For this analysis, we only use data from municipalities with more than 400 total
 Then, we compared the spatial synchrony for $\mathcal R(t)$ estimates and synchrony for logged cases (Figure 2C in the main text).
 For this analysis, we used $\mathcal R(t)$ estimates from all municipalities without any exclusion.
 
-Finally, we fitted a generalized additive model to logged values of $\mathcal R(t)$ to quantify the effect of susceptible depletion and temporal variation in intrinsic transmission \citep{te2013driving,kissler2020projecting}:
+Finally, we fitted a generalized additive model to logged values of $\mathcal R(t)$ to quantify the effect of susceptible depletion and temporal variation in intrinsic transmission \citep{te2013driving,wood2017generalized,kissler2020projecting}:
 \begin{equation}
 \log \left(\mathcal R_{t,m}\right) = \alpha_m + \beta d_{t,m} + s(t),
 \end{equation}
@@ -227,6 +227,32 @@ This is done by calculating the squared value of the correlation coefficient bet
 
 Finally, we evaluate the impact of initial conditions on pertussis epidemic dynamics by varying $s(0)$ between $0.13$ and $0.23$ and $i(0)$ between $7\times 10^{-6}$ and $1.5\times 10^{-3}$.
 For each simulation, we quantify the center of gravity.
+
+\pagebreak
+
+\section*{Supplementary Figures}
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+\begin{figure}[!th]
+\includegraphics[width=\textwidth]{../figure/figure_data_region.pdf}
+\caption{
+\textbf{Spatiotempordal dynamics of pertussis outbreak in Korea across first-level administrative divisions, 2024---2025.}
+Time series are arranged based on their approximate locations.
+}
+\end{figure}
+
+\pagebreak
+
+
+\begin{figure}[!th]
+\includegraphics[width=\textwidth]{../figure/figure_stanfit_all_delta.pdf}
+\caption{
+\textbf{Validation .}
+Time series are arranged based on their approximate locations.
+}
+\end{figure}
+
 
 \pagebreak
 
