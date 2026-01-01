@@ -218,7 +218,8 @@ To test whether variation in introduction timing and susceptible dynamics alone 
 We also allowed spatial variation in initial susceptible $S(0)$ and infected $I(0)$ fraction as well as the reporting rate $\rho$.
 Variation in $S(0)$ captures differences in population-level susceptibility, whereas variation in $I(0)$ effectively captures differences in introduction timing.
 For this analysis, we also focus on municipalities with more than 400 total cases.
-The model is fitted using a Bayesian inference software rstan \citep{carpenter2017stan}.
+The model is fitted using a Bayesian inference software rstan with 4 independent chains, each consisting of 8000 iterations \citep{carpenter2017stan}.
+The convergence was assessed by ensuring low R-hat, high effective sample size, no divergent transitions, and no iterations that exceeded the maximum tree depth.
 
 Our simple transmission model that assume shared transmission rate can capture fine-scale spatiotemporal variation of pertussis outbreak in Korea (Figure 3A) with a median R squared value of 0.86 (95\% quantile: 0.71---0.91).
 Furthermore, we find a near-perfect correlation between the predicted and observed center of gravity (Figure 3C).
