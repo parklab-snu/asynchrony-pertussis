@@ -112,7 +112,7 @@ Sang Woo Park\textsuperscript{1,*}
 Infectious disease outbreaks typically exhibit a large-scale, spatial synchrony, reflecting coupling through shared environmental forcing and human mobility.
 During South Korea's unprecedented large pertussis outbreak in 2024---2025, however, asynchronous epidemic patterns were observed throughout the country:
 some regions experienced two epidemic waves, while others regions experienced only the first or second wave.
-Using high-resolution surveillance data from 252 municipalities and a simple transmission model, I show that heterogeneity in introduction timing and local susceptibility can drive such fine-scale asynchrony even when transmission is spatially homogeneous.
+Integrating high-resolution surveillance data from 252 municipalities and a simple transmission model, I show that heterogeneity in introduction timing and local susceptibility can drive such fine-scale asynchrony even when transmission is spatially homogeneous.
 These results redefine epidemic synchrony as a condition contingent not only on shared transmission dynamics, but also on variation in initial epidemic conditions.
 
 \pagebreak
@@ -249,7 +249,7 @@ Nonetheless, this analysis suggests that the majority of asynchrony in pertussis
 \section*{Discussion}
 
 Understanding mechanisms that drive spatiotemporal variation in epidemic dynamics is a major aim for infectious disease dynamics and control 
-\citep{pitzer2015environmental,dalziel2018urbanization,pons2018seasonality,baker2019epidemic,grenfell2001travelling,cummings2004travelling,viboud2006synchrony}
+\citep{pitzer2015environmental,dalziel2018urbanization,pons2018seasonality,baker2019epidemic,grenfell2001travelling,cummings2004travelling,viboud2006synchrony}.
 The large pertussis outbreaks in Korea that occurred between 2024 and 2025 presents a unique perspective on a fine-scale spatiotemporal asynchrony heterogeneity in epidemic dynamics: 
 some municipalities experienced two epidemic waves while other places experienced only the first or second without a clear patterns of synchrony.
 I propose that this variation can be explained by the differences in introduction delays and initial susceptibility, where high levels of susceptibility can cause a large first wave and prevent the second wave through susceptible depletion.
@@ -264,13 +264,13 @@ For example, I hypothesized that past vaccine coverage would explain variation i
 Resulting parameter estimates must be interpreted with care as the model relies on several simplifying assumptions.
 For example, I assumed the same values of basic reproduction number $\mathcal R_0$ across all municipalities.
 Therefore, any regional variation in $\mathcal R_0$, driven by differences in contact rates and age distributions would be captured in the estimate of the initial susceptible fraction.
-In other words, the estimated susceptible fraction should be interpreted as the effective susceptibility that also captures behavioral and sociological factors, beyond immunological differences.
+In other words, the estimated susceptible fraction should be interpreted as the effective susceptibility that also captures behavioral and sociological factors, beyond immunological differences \citep{park2025interplay}.
 I also did not consider an age structure in the model, but age-structured contact patterns play an important role in shaping pertussis transmission \citep{rohani2010contact}.
 For example, \cite{cho2024pertussis} recently suggested transmission among elderly may contributed to the persistence of pertussis in Korea.
 Despite these limitations, this work provides a quantitative foundation and empirical evidence for understanding epidemic asynchrony.
 
 The continued emergence of new pathogens and re-emergence of vaccine preventable infections, such as pertussis, highlights the importance of identifying hotspots of future outbreaks and developing targeted intervention strategies \citep{heymann2001hot,naguib2020towards,nguyen2022enterovirus}.
-The apparent asynchrony in pertussis epidemic in Korea, driven by the differences in introduction timing and population-level susceptibility, underlines the importance of detailed pathogen surveillance for early detection and strategic allocation of prevention and control resources..
+The apparent asynchrony in pertussis epidemic in Korea, driven by the differences in introduction timing and population-level susceptibility, underlines the importance of detailed pathogen surveillance for early detection and strategic allocation of prevention and control resources.
 Immunological surveillance platforms will be particularly useful for evaluating potential risk of pathogen re-emergence in the future \citep{mina2020global,nguyen2025dynamics}.
 A detailed understanding of spatial variation in population-level immunity will be crucial for predicting spatiotemporal dynamics of future outbreaks.
 
@@ -310,7 +310,7 @@ Then, I estimated $\mathcal R(t)$ using the method of \citep{cori2013new}:
 \mathcal R(t) = \frac{i(t)}{\sum_{k=1}^n i(t-k) g(k)},
 \end{equation}
 where $i(t)$ is the smoothed incidence and $n$ is the maximum length of generation interval in weeks (assumed to be 5 weeks).
-The generation-interval distribution $g(k)$ is assumed to follow a gamma distribution with a mean of 9.47 days and a standard deviation of 6.22 days.
+The generation-interval distribution $g(k)$ was assumed to follow a gamma distribution with a mean of 9.47 days and a standard deviation of 6.22 days based on the estimated serial-interval distribution during this outbreak \citep{cho2025transmission}.
 The reproduction number estimates can be unrealistically high when the number of infections is close to zero. 
 Therefore, I only used estimates between May 2024 and March 2025 throughout the paper.
 I truncated all $\mathcal{R}(t)$ estimates exceeding 5 to a maximum value of 5.
@@ -404,7 +404,7 @@ Then, I computed R squared values for each municipality in the same way as befor
 
 \subsection*{Relationshiip between estimated initial susceptible and vaccine coverage}
 
-I assessed the relationshiip between estimated initial susceptible and vaccine coverage using linear regression.
+I assessed the relationship between estimated initial susceptible and vaccine coverage using linear regression.
 Specifically, assuming that the waning of vaccinal immunity is the main cause for pertussis re-emergence, I compared DTaP (Diphtheria-Tetanus-Pertussis) vaccine coverage for 3 years old as of 2015 and the estimated initial susceptible in each municipality and performed a linear regression.
 I used vaccine coverage as of 2015 because this was the oldest data that were publicly available.
 I considered using estimates from municipalities with $>400$ cases, since the parameter estimates are expected to be more reliable, but were unable to find any clear signature between vaccine coverage and estimated $s(0)$.
@@ -412,6 +412,7 @@ I considered using estimates from municipalities with $>400$ cases, since the pa
 
 \section*{Acknowledgements}
 
+S.W.P. thanks Bryan Grenfell for helpful discussion.
 S.W.P. was supported by the New Faculty Startup Fund from Seoul National University.
 
 \section*{Author contributions}
