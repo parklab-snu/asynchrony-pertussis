@@ -93,7 +93,7 @@
 \begin{flushleft}{
 	\Large
 	\textbf\newline{
-	  Explaining the fine-scale spatial asynchrony during a large pertussis outbreak in Korea
+	  Delayed introduction, susceptible dynamics, and contact variation explain spatial asynchrony during the large pertussis outbreak in Korea
 	}
 }
 \newline
@@ -109,11 +109,10 @@ Sang Woo Park\textsuperscript{1,*}
 
 \section*{Abstract}
 
-Infectious disease outbreaks typically exhibit a large-scale, spatial synchrony, reflecting coupling through shared environmental forcing and human mobility.
+Infectious disease outbreaks typically exhibit a large-scale spatial synchrony, reflecting coupling through shared environmental forcing and human mobility.
 During South Korea's unprecedented large pertussis outbreak in 2024---2025, however, asynchronous epidemic patterns were observed throughout the country:
 some regions experienced two epidemic waves, while others regions experienced only the first or second wave.
-Integrating high-resolution surveillance data from 252 municipalities and a simple transmission model, I show that heterogeneity in introduction timing and local susceptibility can drive such fine-scale asynchrony even when transmission is spatially homogeneous.
-These results redefine epidemic synchrony as a condition contingent not only on shared transmission dynamics, but also on variation in initial epidemic conditions.
+Integrating high-resolution surveillance data from 252 municipalities and a simple transmission model, I show that heterogeneity in introduction timing and local contact variation can drive such fine-scale asynchrony even when transmission is spatially homogeneous.
 
 \pagebreak
 
@@ -199,18 +198,17 @@ In 830 out of 861 municipality combinations, correlation in $\mathcal R(t)$ is h
 This is reflected in the spatial synchrony function for $\mathcal R(t)$ (Figure 2C), where the mean cross-correlation for $\mathcal R(t)$ ($\rho=0.71$) is considerably higher than that for cases ($\rho=0.30$).
 
 \begin{figure}[!ht]
-\includegraphics[width=\textwidth]{../figure/figure_stanfit_region.pdf}
+\includegraphics[width=\textwidth]{../figure/figure_stanfit_region_R0.pdf}
 \caption{
 \textbf{Fine-scale spatiotemporal variation in pertussis epidemic can be explained with a simple SEIR model.}
-(A) Comparisons between the observed and predicted epidemic dynamics across municipalities with more than 400 total cases, ordered by latitude..
+(A) Comparisons between the observed and predicted epidemic dynamics across municipalities with more than 400 total cases, ordered by latitude.
 (B) The bar plot represents the distribution of R squared values for model fits.
 The vertical dashed line represents the median.
 (C) Relationship between the estimated and predicted center of gravity.
 The solid line indicated the one-to-one relationship.
-(D) Relationship between the initial susceptible $S(0)$ and infected $I(0)$ fraction with center of gravity.
-Points represent the estimates for each municipality.
-(E) Impact of initial susceptibility on pertussis epidemic dynamics.
-(F) Estimated time-varying pertussis transmission rate.
+(D) Estimated basic reproductioin number $\mathcal R_0$ across municipalities, ordered by latitude.
+Points and error bars represent posterior medians and corresponding 95\% credible intervals.
+(E) Estimated time-varying pertussis transmission multiplier.
 The red line and shaded regions represent the posterior median and the corresponding 95\% credible interval.
 }
 \end{figure}
@@ -223,15 +221,46 @@ Taken together, the analysis of center of gravity and $\mathcal R(t)$ suggest th
 
 \subsection*{Mathematical modeling of fine-scale spatio-temporal pertussis epidemic}
 
-To test whether variation in introduction timing and susceptible dynamics alone can explain the observed epidemic patterns, I extend a standard susceptible-exposed-infected-removed (SEIR) model \citep{rohani2010contact} to jointly estimated a single, time-varying transmission term, which is shared across all regions.
-I also allow spatial variation in initial susceptible $S(0)$ and infected $I(0)$ fraction as well as the reporting rate $\rho$.
-Variation in $S(0)$ captures differences in population-level susceptibility, whereas variation in $I(0)$ effectively captures differences in introduction timing.
+To test whether variation in introduction timing and susceptible host dynamics can explain the observed epidemic patterns, I extend a standard susceptible-exposed-infected-removed (SEIR) model \citep{rohani2010contact} to jointly estimate a single, time-varying transmission term, which is shared across all regions.
+In particular, the transmission rate $\beta_r(t)$ in region $r$ is modeled as follows:
+\begin{equation}
+\beta_r(t) = \beta_r(0) \delta(t),
+\end{equation}
+where $\beta_r(0)$ represents the baseline level transmission rates, which accounts for variation in baseline contact levels and is estimated separately for each region $r$.
+Then, $\delta(t)$ represents a time-varying transmission term, which are shared across all regions and captures a multiplicative change in transmission over time.
+I also allow the initial susceptible fraction $S(0)$ to be shared across all regions to capture the average level of susceptibility.
+Initial infected fraction $I_r(0)$ and reporting rate $\rho_r$ are allowed to vary across regeions, where variation in $I(0)$ effectively captures differences in introduction timing.
 For this analysis, I also focus on municipalities with more than 400 total cases.
 The model is fitted using a Bayesian inference software rstan \citep{carpenter2017stan}.
 
-This simple transmission model that assume shared transmission rate can capture fine-scale spatiotemporal variation of pertussis outbreak in Korea (Figure 3A) with a median R squared value of 0.86 (95\% quantile: 0.71---0.91).
+This simple transmission model that assume shared transmission rate can capture fine-scale spatiotemporal variation of pertussis outbreak in Korea (Figure 3A) with a median R squared value of 0.86 (95\% quantile: 0.71---0.92; Figure 3B).
 Furthermore, I find a near-perfect correlation between the predicted and observed center of gravity (Figure 3C).
-So what factors determine the timing of epidemic, and therefore the center of gravity?
+These results suggest that the model assuming shared time-varying transmission can sufficiently explain the fine-scale spatial asynchrony observed during the pertussis outbreak in Korea.
+So how do contact levels vary across regions and transmission change across time?
+
+I estimate a considerable variation in $\mathcal R_0$ across regions (Figure 3D).
+The median esimates for region-level $\mathcal R_0$ vary from 9.7 to 22.1 with an average of 17, consistent with previous estimates \citep{anderson1982directly,wearing2009estimating,lavine2012resolving}.
+The estimated initial susceptible fraction is 0.15 (95\% CI: 0.14--0.16), which correspond to an initial effective reproduction number of 2.6 when combined with the average $\mathcal R_0$ estimate---this is consistent with the initial $\mathcal R(t)$ estimate.
+Finally, I also estimate a large reduction in transmission around late July 2024 and late January 2025 (Figure 3E).
+The estimated timing of transmission reduction is also consistent with results from the $\mathcal R(t)$ analysis and coincides with the timing of school holidays in Korea.
+Parameter estimates for the initial infected fraction $I(0)$ and reporting rates also reveal large variation across regions (Supplementary Figure S2).
+While estimates of $\mathcal R_0$ or $I(0)$ do not correlate with population sizes, reporting rate negatively correlates with population size (Supplementary Figure S3).
+
+I validate the model by taking the estimated transmission term $\delta(t)$ and fitting the remaining parameters (i.e., initial infected, initial susceptible, basic reproduction number, and reporting probability) to data from the remaining 210 municipalities with less than 400 total cases (Figure S4).
+While model predictions appear consistent with the observed patterns (Figure S4A),
+I estimate a lower value for the median R squared: 0.59 (95\% quantile: 0.01--0.85; Figure S4B).
+Nonetheless, this analysis suggests that the majority of asynchrony in pertussis epidemics can be explained via the differences in introduction timing and contact variation.
+
+As an alternative hypothesis, I also considered the possibility that the spatiotemporal asynchrony may be driven by variation in susceptibility.
+To do so, I assumed a fixed basic reproduction number, $\mathcal R_0=17$ and estimated a separate initial susceptible fraction $S_r(0)$ for each region and a shared time-varying transmission term $\delta(t)$.
+This alternative model provided nearly identical fits to data compared to the original model (Supplementary Figure S5--S6) and similar levels of out-of-sample validation (Supplementary Figure S7).
+However, I did not find any correlation between past vaccine coverage and the estimated levels of susceptibility (Supplementary Figure S7).
+Moreover, the estimated range for the initial susceptible fraction was unrealistically wide compared to the reported range for past vaccine coverage (Supplementary Figure S7).
+Thus, I tentatively conclude that a model assuming contact variation is likely more parsimonious and continue the analysis.
+
+So how does variation in 
+
+
 I address this question by simulating the model between April 2024 and April 2025 across plausible ranges of $S(0)$ and $I(0)$.
 
 First, increasing $I(0)$ leads to an earlier epidemic because it permits earlier introduction of the infection to the population (Figure 3D).
@@ -444,12 +473,78 @@ Time series are arranged based on their approximate locations.
 \pagebreak
 
 \begin{figure}[!th]
-\includegraphics[width=\textwidth]{../figure/figure_stanfit_all_delta.pdf}
+\includegraphics[width=\textwidth]{../figure/figure_stanfit_region_R0_supp_1.pdf}
+\caption{
+\textbf{Estimated initial infected fraction (A) and reporting rates (B) using time series data from municipalities with less than 400 total cases.}
+Points represent posterior medians.
+Error bars represent 95\% credible intervals.
+}
+\end{figure}
+
+\pagebreak
+
+\begin{figure}[!th]
+\includegraphics[width=\textwidth]{../figure/figure_stanfit_region_R0_supp_2.pdf}
+\caption{
+\textbf{Relationship between population size and parameter estimates for the basic reproduction number (A), initial infected fraction (B), and reporting rate (C).}
+Points represent posterior medians.
+Error bars represent 95\% credible intervals.
+Red lines and shaded regions represent the linear regression fit and associated 95\% confidence intervals.
+}
+\end{figure}
+
+\pagebreak
+
+\begin{figure}[!th]
+\includegraphics[width=\textwidth]{../figure/figure_stanfit_all_R0_delta.pdf}
 \caption{
 \textbf{Validation of the transmission model using time series data from municipalities with less than 400 total cases.}
 (A) Comparisons between the observed and predicted epidemic dynamics across municipalities with less than 400 total cases, ordered by latitude.
 (B) The bar plot represents the distribution of R squared values for model fits.
 The vertical dashed line represents the median.
+Initial infected, initial susceptible, basic reproduction number, and reporting probability were estimated for each region while assuming a known transmission variation term $\delta(t)$.
+}
+\end{figure}
+
+\pagebreak
+
+\begin{figure}[!ht]
+\includegraphics[width=\textwidth]{../figure/figure_stanfit_region.pdf}
+\caption{
+\textbf{Alternative SEIR model fits assuming variation in initial susceptible fraction.}
+(A) Comparisons between the observed and predicted epidemic dynamics across municipalities with more than 400 total cases, ordered by latitude.
+(B) The bar plot represents the distribution of R squared values for model fits.
+The vertical dashed line represents the median.
+(C) Relationship between the estimated and predicted center of gravity.
+The solid line indicated the one-to-one relationship.
+(D) Estimated initial susceptible fraction $S(0)$ across municipalities, ordered by latitude.
+Points and error bars represent posterior medians and corresponding 95\% credible intervals.
+(E) Estimated time-varying pertussis transmission multiplier.
+The red line and shaded regions represent the posterior median and the corresponding 95\% credible interval.
+}
+\end{figure}
+
+\pagebreak
+
+\begin{figure}[!th]
+\includegraphics[width=\textwidth]{../figure/figure_compare_supp_1.pdf}
+\caption{
+\textbf{Comparisons between model fits across two different models.}
+Solid lines represent posterior median predictions based on the model assuming separate $\mathcal R_0$ in each region.
+Red lines represent posterior median predictions based on the model assuming separate $S(0)$ in each region.
+}
+\end{figure}
+
+\pagebreak
+
+\begin{figure}[!th]
+\includegraphics[width=\textwidth]{../figure/figure_stanfit_all_delta.pdf}
+\caption{
+\textbf{Validation of the alternative transmission model using time series data from municipalities with less than 400 total cases.}
+(A) Comparisons between the observed and predicted epidemic dynamics across municipalities with less than 400 total cases, ordered by latitude.
+(B) The bar plot represents the distribution of R squared values for model fits.
+The vertical dashed line represents the median.
+Initial infected, initial susceptible, and reporting probability were estimated for each region while assuming a known transmission variation term $\delta(t)$ and basic reproduction number.
 }
 \end{figure}
 
@@ -463,6 +558,9 @@ Each point represents the estimate initial susceptible and vaccine coverage valu
 Red lines and shaded regions represent the linear regression fit and corresponding 95\% confidence intervals.
 }
 \end{figure}
+
+
+\pagebreak
 
 \bibliography{whooping-cough}
 

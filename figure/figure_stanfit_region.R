@@ -1,13 +1,12 @@
 library(dplyr)
 library(tidyr)
 library(rstan)
-library(ggplot2); theme_set(theme_bw())
+library(ggplot2); theme_set(theme_bw(base_family="Times"))
 library(egg)
 source("../script/script_data.R")
 source("../R/seir.R")
 
 load("../stanfit/stanfit_region.rda")
-load("../simulate/simulate_seir_stanfit.rda")
 
 pertussis_korea_spatial_region <- pertussis_korea_spatial %>%
   merge(population)
@@ -156,56 +155,34 @@ g4 <- ggplot(data_merge_cog) +
   )
  
 pardata <- data.frame(
-  S0=ss$summary[grepl("S0\\[", rownames(ss$summary)),6],
+  S0_est=ss$summary[grepl("S0\\[", rownames(ss$summary)),6],
+  S0_lwr=ss$summary[grepl("S0\\[", rownames(ss$summary)),4],
+  S0_upr=ss$summary[grepl("S0\\[", rownames(ss$summary)),8],
   I0=ss$summary[grepl("I0\\[", rownames(ss$summary)),6],
   rho=ss$summary[grepl("rho\\[", rownames(ss$summary)),6],
   region=data_pop$region
 ) %>%
-  merge(data_merge_cog)
-
-g5 <- ggplot(simulate_seir_stanfit) +
-  geom_raster(aes(S0, I0, fill=cog)) +
-  geom_point(data=pardata, aes(S0, I0, fill=cog), shape=21, size=2) +
-  scale_x_continuous("Initial susceptible, S(0)", expand=c(0,0),
-                     limits=c(0.129, NA)) +
-  scale_y_log10("Initial infected, I(0)", expand=c(0,0)) +
-  scale_fill_viridis_c("Center of\ngravity",
-                       breaks=month_break[4:6],
-                       labels=month_label_nl[4:6],
-                       option="A")
-
-simdata <- lapply(c(0.13, 0.15, 0.17, 0.19, 0.21), function(x) {
-  out <- simulate_seir(
-    S0=x,
-    I0=1e-4,
-    delta=deltadata$delta,
-    R0=17
+  merge(data_merge_cog) %>%
+  mutate(
+    region=factor(region,
+                  levels=pertussis_korea_spatial_y$region)
   )
-  
-  data.frame(
-    time=data_spread$time,
-    C=out$Cvec,
-    S0=x
-  )
-}) %>%
-  bind_rows
 
-g6 <- ggplot(simdata) + 
-  geom_line(aes(time, C, col=S0, group=S0), lwd=1) +
-  scale_x_continuous("Year", expand=c(0, 0),
-                     limits=c(2024.25-1/104, 2025.231+1/104),
-                     breaks=month_break,
-                     labels=month_label_nl) +
-  scale_y_continuous("Incidence", expand=c(0, 0), limits=c(0, 0.029)) +
-  scale_color_viridis_c("S(0)",
-                        option="E") +
+g5 <- ggplot(pardata) +
+  geom_point(aes(S0_est, region)) +
+  geom_errorbarh(aes(xmin=S0_lwr, xmax=S0_upr, y=region), height=0) +
+  geom_vline(xintercept=mean(ss$summary[grepl("S0\\[", rownames(ss$summary)),6]), lty=2)  +
+  scale_x_continuous("Initial susceptible fraction") +
+  scale_y_discrete("Municipality ordered by latitude") +
   theme(
     panel.grid = element_blank(),
-    panel.border = element_rect(linewidth=1),
-    legend.position = c(0.8, 0.6)
+    panel.border = element_rect(linewidth=0.7),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    legend.position = "none"
   )
 
-g7 <- ggplot(deltadata) +
+g6 <- ggplot(deltadata) +
   geom_hline(yintercept=1, lty=2) +
   geom_ribbon(aes(time, ymin=delta_lwr, ymax=delta_upr), alpha=0.2, fill="#EF6351") +
   geom_line(aes(time, delta), color="#EF6351") +
@@ -223,8 +200,8 @@ g7 <- ggplot(deltadata) +
   )
 
 gcomb1 <- ggarrange(g1, g2, g3, g4, nrow=1, labels=c("A", "", "B", "C"))
-gcomb2 <- ggarrange(g5, g6, g7, nrow=1, labels=c("D", "E", "F"),
-                    widths=c(1, 2, 1))
+gcomb2 <- ggarrange(g5, g6, nrow=1, labels=c("D", "E"),
+                    widths=c(1, 2))
 
 gfinal <- arrangeGrob(gcomb1, gcomb2, ncol=1)
 
