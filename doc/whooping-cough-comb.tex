@@ -209,7 +209,7 @@ This is reflected in the spatial synchrony function for $\mathcal R(t)$ (Figure 
 The vertical dashed line represents the median.
 (C) Relationship between the estimated and predicted center of gravity.
 The solid line indicated the one-to-one relationship.
-(D) Estimated basic reproductioin number $\mathcal R_0$ across municipalities, ordered by latitude.
+(D) Estimated basic reproduction number $\mathcal R_0$ across municipalities, ordered by latitude.
 Points and error bars represent posterior medians and corresponding 95\% credible intervals.
 (E) Estimated time-varying pertussis transmission multiplier.
 The red line and shaded regions represent the posterior median and the corresponding 95\% credible interval.
@@ -232,7 +232,7 @@ In particular, the transmission rate $\beta_r(t)$ in region $r$ is modeled as fo
 where $\beta_r(0)$ represents the baseline level transmission rates, which accounts for variation in baseline contact levels and is estimated separately for each region $r$.
 Then, $\delta(t)$ represents a time-varying transmission term, which are shared across all regions and captures a multiplicative change in transmission over time.
 I also allow the initial susceptible fraction $S(0)$ to be shared across all regions to capture the average level of susceptibility.
-Initial infected fraction $I_r(0)$ and reporting rate $\rho_r$ are allowed to vary across regeions, where variation in $I(0)$ effectively captures differences in introduction timing.
+Initial infected fraction $I_r(0)$ and reporting rate $\rho_r$ are allowed to vary across regions, where variation in $I(0)$ effectively captures differences in introduction timing.
 For this analysis, I also focus on municipalities with more than 400 total cases.
 The model is fitted using a Bayesian inference software rstan \citep{carpenter2017stan}.
 
@@ -242,7 +242,7 @@ These results suggest that the model assuming shared time-varying transmission c
 So how do contact levels vary across regions and transmission change across time?
 
 I estimate a considerable variation in $\mathcal R_0$ across regions (Figure 3D).
-The median esimates for region-level $\mathcal R_0$ vary from 9.7 to 22.1 with an average of 17, consistent with previous estimates \citep{anderson1982directly,wearing2009estimating,lavine2012resolving}.
+The median estimates for region-level $\mathcal R_0$ vary from 9.7 to 22.1 with an average of 17, consistent with previous estimates \citep{anderson1982directly,wearing2009estimating,lavine2012resolving}.
 The estimated initial susceptible fraction is 0.15 (95\% CI: 0.14--0.16), which correspond to an initial effective reproduction number of 2.6 when combined with the average $\mathcal R_0$ estimate---this is consistent with the initial $\mathcal R(t)$ estimate.
 Finally, I also estimate a large reduction in transmission around late July 2024 and late January 2025 (Figure 3E).
 The estimated timing of transmission reduction is also consistent with results from the $\mathcal R(t)$ analysis and coincides with the timing of school holidays in Korea.
@@ -299,7 +299,7 @@ However, I still did not find a clear correlation between past vaccine coverage 
 Detailed serological data may allow us to test different model formulations and further quantify potential variation in population-level susceptibility \citep{mina2020global,nguyen2022enterovirus,nguyen2026dynamics}.
 
 Resulting parameter estimates must be interpreted with care as the model relies on several simplifying assumptions.
-For example, the main model assumed the same values of initial susceptible fraction across all municipalities and tried to estimate separete basic reproduction number $\mathcal R_0$.
+For example, the main model assumed the same values of initial susceptible fraction across all municipalities and tried to estimate separate basic reproduction number $\mathcal R_0$.
 Therefore, any regional variation in $S(0)$, driven by differences in vaccine coverage and waning, would be captured in the estimate of the $\mathcal R_0$.
 I also did not consider an age structure in the model, but age-structured contact patterns play an important role in shaping pertussis transmission \citep{rohani2010contact}.
 For example, \cite{cho2024pertussis} recently suggested transmission among elderly may contributed to the persistence of pertussis in Korea.
