@@ -126,22 +126,25 @@ Ecological theory predicts that spatial coupling---via shared environmental forc
 Consistent with this theory, large-scale spatial synchrony has been observed across diverse pathogens, including measles \citep{grenfell2001travelling}, dengue \citep{cummings2004travelling}, influenza \citep{viboud2006synchrony}, RSV \citep{baker2019epidemic}, and SARS-CoV-2 \citep{paton2022rapid}, highlighting the near-ubiquity of spatial coupling in shaping epidemic dynamics.
 However, an exception to this pattern has been observed in pre-vaccination pertussis epidemics, which exhibited substantially weaker spatial correlation than measles epidemics reflecting a stronger sensitivity to stochasticity and transients \citep{rohani1999opposite}.
 
-Pertussis is a vaccine preventable respiratory disease, caused by the bacterium \textit{Bordetella pertussis} \citep{kilgore2016pertussis}.
-Following the introduction of DTwP (diphtheria, tetanus, and whole cell pertussis) vaccine in 1954 and DTaP (diphtheria, tetanus, and acellular pertussis) vaccine in 1989 in Korea, the number of pertussis cases in Korea decreased dramatically, with less than 10 cases reported in 1995 compared to $>10,000$ cases reported annually around 1955--1963 \citep{choe2012national}.
+Pertussis is a vaccine-preventable respiratory disease caused by the bacterium \textit{Bordetella pertussis} \citep{kilgore2016pertussis}.
+Following the introduction of DTwP (diphtheria, tetanus, and whole-cell pertussis) vaccine in the mid-1950s in Korea and the later replacement to DTaP (diphtheria, tetanus, and acellular pertussis) vaccine in 1989, the number of pertussis cases in Korea decreased dramatically, with less than 10 cases reported in 1995 compared to $>10,000$ cases reported annually around 1955--1963 \citep{lee2008immunization,choi2010immunogenicity,choe2012national,oh2012milestones,choe2013comparative}.
+The current immunization schedule in Korea recommends DTaP vaccines at 2, 4, and 6 months, with boosters at 15–18 months and 4–6 years, followed by Tdap at 11–12 years and Td/Tdap boosters every 10 years thereafter \citep{KDCA2025Diphtheria}.
 However, pertussis cases have resurged in Korea and many other countries despite high vaccine coverage, raising concerns about the possibility of vaccine waning \citep{cherry2005epidemiology,wendelboe2005duration,wearing2009estimating} and pathogen evolution \citep{mooi2001adaptation,barkoff2018surveillance,lesne2020acellular}.
 
 Between 2024 and 2025, an unprecedented large pertussis outbreak occurred in Korea, resulting in more than 50,000 cases by early 2025 \citep{kim2025pertussis}.
 This outbreak marked a dramatic increase in the disease compared to 292 cases reported in 2023 and 21 cases reported in 2022, despite high vaccine coverage (91.1\% of identified 2024 cases had a known vaccination history) \citep{kang2024pertussis,kim2025pertussis}.
-A considerable spatiotemporal variation in disease burden has been observed during the outbreak, but we currently have limited understanding of the underlying spatiotemporal variation in epidemic dynamics \citep{kim2025pertussis}.
-Interestingly, this outbreak exhibited a pronounced spatial asynchrony, which deviates from theoretical expectations based on spatial coupling, raising questions about mechanisms driving this fine-scale spatiotemporal heterogeneity in pertussis epidemic (Figure 1).
+Considerable spatiotemporal variation in disease burden has been observed during the outbreak, but we currently have limited understanding of the underlying spatiotemporal variation in epidemic dynamics \citep{kim2025pertussis}.
+Interestingly, this outbreak exhibited a pronounced spatial asynchrony in terms of both the size and timing of epidemic waves, with some municipalities experiencing only one of the two epidemic waves.
+This pattern deviates from theoretical expectations based on spatial coupling, raising questions about mechanisms driving this fine-scale spatiotemporal heterogeneity in pertussis epidemic (Figure 1).
 
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{../figure/figure_data_spatial.pdf}
 \caption{
-\textbf{Spatiotempordal dynamics of pertussis outbreak in Korea, 2024---2025.}
-(A) Total number of reported cases in Korea.
-(B) Number of reported cases per 100,000 individuals by municipality, ordered by latitude.
-(C) Number of reported cases per 100,000 individuals in four most populated cities in Korea.
+\textbf{Spatiotemporal dynamics of pertussis outbreak in Korea, 2024---2025.}
+(A) Weekly number of total reported cases in Korea.
+(B) Weekly number of reported cases per 100,000 individuals by municipality, ordered by latitude.
+(C) Weekly number of reported cases per 100,000 individuals in the four most populated cities are shown by black lines. 
+Red dashed lines show the weekly number of total reported cases nationally.
 (D) Map of pertussis cases per 100,000 individuals between January 2024 and November 2025.
 (E) Map of center of gravity, which represents the mean timing of cases.
 (F) Spatial synchrony in logged cases as a function of distance.
@@ -149,13 +152,14 @@ The red solid line and shaded regions represent the median estimate and the corr
 The dashed horizontal line represents the mean correlation.
 (G) Relationship between center of gravity and the timing of introduction, defined as the first week when the number of reported cases is greater than 1 in 100,000.
 The red solid line and shaded regions represent the linear regression fit and the corresponding 95\% confidence interval.
+The dashed line represents the one-to-one relationship.
 }
 \end{figure}
 
-To understand mechanisms driving the apparent spatial asynchrony during the large pertussis outbreak in Korea, I combine a detailed spatiotemporal surveillance data from 252 municipalities with mathematical modeling approaches.
+To understand mechanisms driving the apparent spatial asynchrony during the large pertussis outbreak in Korea, I combine detailed spatiotemporal surveillance data from 252 municipalities with mathematical modeling approaches.
 I begin by showing that asynchrony in pertussis epidemics, captured by heterogeneous epidemic timing, is associated with differences in introduction delays.
-In contrast, the analysis of effective reproduction number reveals synchrony in underlying transmission patterns, suggesting that spatial asynchrony can arise despite synchrony in transmission.
-To test this hypothesis, I develop a spatiotemporal transmission model that allows for shared transmission term and variation in initial conditions and fit this model to observed data using Bayesian framework.
+In contrast, the analyses of effective reproduction number reveals synchrony in underlying transmission patterns, suggesting that spatial asynchrony can arise despite synchrony in transmission.
+To test this hypothesis, I develop a spatiotemporal transmission model that allows for a shared transmission term and variation in initial conditions and fit this model to observed data using Bayesian framework.
 Overall, the paper offers insight into how differences in initial conditions (i.e., introduction delays and initial susceptibility) can drive fine-scale spatiotemporal asynchrony in population dynamics.
 
 \subsection*{Asynchrony in pertussis epidemics associated with introduction delays}
@@ -170,7 +174,7 @@ To systematically evaluate this apparent asynchrony, I estimate the spatial sync
 The spatial synchrony function confirms a sharp reduction in cross-correlation with distance (Figure 1F).
 For example, within 100km of distance, the cross-correlation drops below 0.25.
 By comparison, pertussis epidemics in the US maintained cross-correlations above 0.2 even at 1,000 km \citep{choisy2012changing}, highlighting the fine-scale asynchrony in pertussis epidemics in Korea.
-Interestingly, the variation in the center of gravity significantly correlates with the introduction timing ($\rho=0.53$; 95\%CI: 0.44---0.62; Figure 1G), suggesting that differences in introduction timing may contribute to the apparent spatial asynchrony.
+Interestingly, the variation in the center of gravity significantly correlates with the introduction timing ($\rho=0.53$; 95\% CI: 0.44---0.62; Figure 1G), suggesting that differences in introduction timing may have contributed to the apparent spatial asynchrony.
 
 \subsection*{Synchrony in temporal changes in pertussis transmission}
 
@@ -191,9 +195,9 @@ The orange line and shaded regions represent the estimated changes in transmissi
 }
 \end{figure}
 
-I then ask whether the observed epidemic asynchrony can be explained by the differences in transmission patterns.
+I then ask whether the observed epidemic asynchrony can be explained by differences in transmission patterns.
 To do so, I quantify the effective reproduction number $\mathcal R(t)$, which measures the average number of new infections caused by a single infected individual \citep{wallinga2007generation,cori2013new}.
-For this analysis, I focus on municipalities with more than 400 total cases reported because $\mathcal R(t)$ estimates can be unstable when the number of infections are low.
+For this analysis, I focus on municipalities with more than 400 total cases reported because $\mathcal R(t)$ estimates can be unstable when the number of infections is low.
 
 Notably, $\mathcal R(t)$ estimates appear to be largely homogeneous across different regions, despite the apparent heterogeneity in the observed epidemic dynamics (Figure 2A).
 Comparisons of correlation coefficients in $\mathcal R(t)$ versus correlation coefficients in reported cases between all pairwise municipality combinations confirm this observation (Figure 2B).
@@ -203,12 +207,12 @@ This is reflected in the spatial synchrony function for $\mathcal R(t)$ (Figure 
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{../figure/figure_stanfit_region_R0.pdf}
 \caption{
-\textbf{Fine-scale spatiotemporal variation in pertussis epidemic can be explained with a simple SEIR model.}
+\textbf{Fine-scale spatiotemporal variation in the pertussis epidemic can be explained with a simple SEIR model.}
 (A) Comparisons between the observed and predicted epidemic dynamics across municipalities with more than 400 total cases, ordered by latitude.
 (B) The bar plot represents the distribution of R squared values for model fits.
 The vertical dashed line represents the median.
 (C) Relationship between the estimated and predicted center of gravity.
-The solid line indicated the one-to-one relationship.
+The solid line indicates the one-to-one relationship.
 (D) Estimated basic reproduction number $\mathcal R_0$ across municipalities, ordered by latitude.
 Points and error bars represent posterior medians and corresponding 95\% credible intervals.
 (E) Estimated time-varying pertussis transmission multiplier.
@@ -218,9 +222,9 @@ The red line and shaded regions represent the posterior median and the correspon
 
 To better understand factors driving changes in $\mathcal R(t)$, I perform a regression analysis using a generalized additive model with three covariates \citep{te2013driving,wood2017generalized,kissler2020projecting}: (1) a municipality-level fixed effect allowing each municipality to have its own intercept; (2) a cumulative-cases term capturing the effect of susceptible depletion; and (3) a single smooth term shared across municipalities, which allows for temporal changes in pertussis transmission over time, such as seasonal forcing.
 First, the smooth term suggests a strong transmission reduction around August and February, which coincide with the timing of school breaks (Figure 2D).
-Second, the model estimates a significant effect of effect of susceptible depletion (Figure 2D; $p<0.001$).
+Second, the model estimates a significant effect of susceptible depletion (Figure 2D; $p<0.001$).
 Notably, this simple regression model explains 84\% of variance in $\mathcal R(t)$, suggesting that the observed temporal fluctuations in transmission can be largely explained by school-related seasonality and the gradual depletion of susceptible individuals.
-Taken together, the analysis of center of gravity and $\mathcal R(t)$ suggest that differences in introduction timing and susceptible host dynamics are likely main drivers for spatial asynchrony in pertussis epidemics in Korea, rather than variation in seasonal transmission patterns.
+Taken together, the analyses of center of gravity and $\mathcal R(t)$ suggest that differences in introduction timing and susceptible host dynamics are likely main drivers for spatial asynchrony in pertussis epidemics in Korea, rather than variation in seasonal transmission patterns.
 
 \subsection*{Mathematical modeling of fine-scale spatio-temporal pertussis epidemic}
 
@@ -229,21 +233,21 @@ In particular, the transmission rate $\beta_r(t)$ in region $r$ is modeled as fo
 \begin{equation}
 \beta_r(t) = \beta_r(0) \delta(t),
 \end{equation}
-where $\beta_r(0)$ represents the baseline level transmission rates, which accounts for variation in baseline contact levels and is estimated separately for each region $r$.
-Then, $\delta(t)$ represents a time-varying transmission term, which are shared across all regions and captures a multiplicative change in transmission over time.
+where $\beta_r(0)$ represents the baseline transmission rate, which accounts for variation in baseline contact levels and is estimated separately for each region $r$.
+Then, $\delta(t)$ represents a time-varying transmission term, which is shared across all regions and captures a multiplicative change in transmission over time.
 I also allow the initial susceptible fraction $S(0)$ to be shared across all regions to capture the average level of susceptibility.
 Initial infected fraction $I_r(0)$ and reporting rate $\rho_r$ are allowed to vary across regions, where variation in $I(0)$ effectively captures differences in introduction timing.
 For this analysis, I also focus on municipalities with more than 400 total cases.
-The model is fitted using a Bayesian inference software rstan \citep{carpenter2017stan}.
+The model is fitted using the Bayesian inference software rstan \citep{carpenter2017stan}.
 
-This simple transmission model that assume shared transmission rate can capture fine-scale spatiotemporal variation of pertussis outbreak in Korea (Figure 3A) with a median R squared value of 0.86 (95\% quantile: 0.71---0.92; Figure 3B).
+This simple transmission model that assumes shared transmission rate can capture fine-scale spatiotemporal variation in the pertussis outbreak in Korea (Figure 3A) with a median R squared value of 0.86 (95\% quantile: 0.71---0.92; Figure 3B).
 Furthermore, I find a near-perfect correlation between the predicted and observed center of gravity (Figure 3C).
 These results suggest that the model assuming shared time-varying transmission can sufficiently explain the fine-scale spatial asynchrony observed during the pertussis outbreak in Korea.
 So how do contact levels vary across regions and transmission change across time?
 
 I estimate a considerable variation in $\mathcal R_0$ across regions (Figure 3D).
 The median estimates for region-level $\mathcal R_0$ vary from 9.7 to 22.1 with an average of 17, consistent with previous estimates \citep{anderson1982directly,wearing2009estimating,lavine2012resolving}.
-The estimated initial susceptible fraction is 0.15 (95\% CI: 0.14--0.16), which correspond to an initial effective reproduction number of 2.6 when combined with the average $\mathcal R_0$ estimate---this is consistent with the initial $\mathcal R(t)$ estimate.
+The estimated initial susceptible fraction is 0.15 (95\% CI: 0.14--0.16), which corresponds to an initial effective reproduction number of 2.6 when combined with the average $\mathcal R_0$ estimate---this is consistent with the initial $\mathcal R(t)$ estimate.
 Finally, I also estimate a large reduction in transmission around late July 2024 and late January 2025 (Figure 3E).
 The estimated timing of transmission reduction is also consistent with results from the $\mathcal R(t)$ analysis and coincides with the timing of school holidays in Korea.
 Parameter estimates for the initial infected fraction $I(0)$ and reporting rates also reveal large variation across regions (Supplementary Figure S2).
@@ -252,14 +256,19 @@ While estimates of $\mathcal R_0$ or $I(0)$ do not correlate with population siz
 I validate the model by taking the estimated transmission term $\delta(t)$ and fitting the remaining parameters (i.e., initial infected, initial susceptible, basic reproduction number, and reporting probability) to data from the remaining 210 municipalities with less than 400 total cases (Figure S4).
 While model predictions appear consistent with the observed patterns (Figure S4A),
 I estimate a lower value for the median R squared: 0.59 (95\% quantile: 0.01--0.85; Figure S4B).
-Nonetheless, this analysis suggests that the majority of asynchrony in pertussis epidemics can be explained via the differences in introduction timing and contact variation.
+Nonetheless, this analysis suggests that the majority of asynchrony in pertussis epidemics can be explained via differences in introduction timing and contact variation.
 
-As an alternative hypothesis, I also considered the possibility that the spatiotemporal asynchrony may be driven by variation in susceptibility.
-To do so, I assumed a fixed basic reproduction number, $\mathcal R_0=17$ and estimated a separate initial susceptible fraction $S_r(0)$ for each region and a shared time-varying transmission term $\delta(t)$.
-This alternative model provided nearly identical fits to data compared to the original model (Supplementary Figure S5--S6) and similar levels of out-of-sample validation (Supplementary Figure S7).
-However, I did not find any correlation between past vaccine coverage and the estimated levels of susceptibility (Supplementary Figure S7).
-Moreover, the estimated range for the initial susceptible fraction was unrealistically wide compared to the reported range for past vaccine coverage (Supplementary Figure S7).
-Thus, I tentatively conclude that a model assuming contact variation is likely more parsimonious and continue the analysis.
+As an alternative hypothesis, I also consider the possibility that the spatiotemporal asynchrony may be driven by variation in susceptibility.
+To do so, I assume a fixed basic reproduction number, $\mathcal R_0=17$ and estimated a separate initial susceptible fraction $S_r(0)$ for each region and a shared time-varying transmission term $\delta(t)$.
+This alternative model provides nearly identical fits to data compared to the original model (Supplementary Figure S5--S6) and similar levels of out-of-sample validation (Supplementary Figure S7).
+However, I do not find any correlation between past vaccine coverage and the estimated levels of susceptibility (Supplementary Figure S8).
+Moreover, the estimated range for the initial susceptible fraction is unrealistically wide compared to the reported range for past vaccine coverage (Supplementary Figure S8).
+
+A formal model comparison based on both widely applicable information criterion (WAIC) and leave-one-out (loo) cross-validation both favored the model that allowed for variation in $\mathcal R_0$, rather than $S(0)$ ($\Delta$WAIC = 86.2 and $\Delta$ELPD = -33, respectively).
+However, both of these model comparison results need to be interpreted with care given high values of effective number of parameters indicated by WAIC diagnostics and high Pareto k values from LOO diagnostics.
+Thus, these results do not provide evidence against spatial variation in susceptibility.
+Instead, these results indicate that spatial variation in contact rates and spatial variation in susceptibility provide alternative explanations that are difficult to distinguish from case data alone.
+Thus, I rely on the model assuming contact variation as the primary model for subsequent analyses, while acknowledging that spatial heterogeneity in susceptibility may also contribute to the observed asynchrony.
 
 \begin{figure}[!ht]
 \includegraphics[width=\textwidth]{../figure/figure_summary.pdf}
@@ -277,24 +286,65 @@ I address this question by simulating the model between April 2024 and April 202
 First, increasing $I(0)$ leads to an earlier epidemic because it permits earlier introduction of the infection to the population (Figure 4A).
 This is consistent with the earlier observations (Figure 1F).
 Similarly, increasing $\mathcal R_0$ also results in an earlier epidemic.
-This is because high levels of transmission allows for a large first wave (Figure 4B), which prevents the second wave through the overcompensatory susceptible depletion  (Figure 4C).
+This is because high levels of transmission allow for a large first wave (Figure 4B), which prevents the second wave through the overcompensatory susceptible depletion  (Figure 4C).
 In contrast, when $\mathcal R_0$ is low, there will be enough susceptible hosts for the population to experience the second wave (Figure 4C).
 These results are consistent with an earlier finding, which showed that contact variation can explain a sudden shift in RSV seasonality from a later wave to an earlier wave \citep{park2025interplay}.
+
+\subsection*{Relative roles of delayed introduction, contact variation, and demographic stochasticity in driving spatial asynchrony}
+
+Finally, previous studies indicated that pertussis transmission can be particularly sensitive to demographic stochasticity compared to other childhoof infections, such as measles.
+So far, I have used deterministic models to tease apart how delayed introduction and contact variation can generate heterogeneity in epidemic waves, but this does not rule out the possibility that demographic stochasticity may have contributed to spatial asynchrony in pertussis outbreaks.
+
+To evaluate the relative roles of demographic stochasticity, introduction timing, and contact variation, I simulate a stochastic SEIR model for each municipality under four different assumptions and compare the mean of all pairwise correlation coefficients in simulated reported cases. 
+First, I considered a baseline scenario in which all municipalities had identical basic reproduction number, $\mathcal R_0$, and initial infected fraction, $I(0)$, where $I(0)$ serves as a proxy for introduction timing. 
+This scenario tests whether demographic stochasticity alone can generate the observed spatial asynchrony. 
+Second, I allowed $I(0)$ to vary across municipalities by sampling with replacement from the median posterior estimates, while holding $\mathcal R_0$ fixed. 
+Third, I allowed $\mathcal R_0$ to vary across municipalities by sampling with replacement from the median posterior estimates, while holding $I(0)$ fixed. 
+Finally, I allowed both $\mathcal R_0$ and $I(0)$ to vary across municipalities by resampling both parameters independently.  
+This resampling approach preserves the empirical variation in baseline transmission and introduction timing estimated from the deterministic model.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{../figure/figure_stoch.pdf}
+\caption{
+\textbf{Effects of demographic stochasticity, introduction timing, and contact variation on spatial synchrony.}
+Colored histograms represent the simulated distributions of mean pairwise correlation coefficients across all municipalities under four different assumptions: 
+(1) identical $\mathcal R_0$ and $I(0)$ across all regions (baseline);
+(2) identical $I(0)$, but municipality-specific $\mathcal R_0$  ($\mathcal R_0$);
+(3) identical $\mathcal R_0$, but municipality-specific $I(0)$  ($I(0)$);
+(4) municipality-specific $\mathcal R_0$ and $I(0)$ ($\mathcal R_0$, $I(0)$).
+Municipality-specific $\mathcal R_0$ and $I(0)$ are obtained by resampling with replacement from a distribution of posterior median estimates.
+The dashed vertical line represents the observed mean value of all pairwise correlation coefficients.
+}
+\end{figure}
+
+Overall, I find that demographic stochasticity alone cannot reproduce the observed levels of spatial asynchrony (Figure 5).
+Allowing for variation in $\mathcal R_0$ and $I(0)$ reduces the degree of spatial synchrony but the simulated levels of spatial synchrony, captured by the distributions of mean pairwise correlation coefficients, is still higher than the observed levels.
+Instead, the simulations support the main conclusion from the deterministic model: spatial variation in introduction timing $I(0)$, together with variation in baseline transmission $\mathcal R_0$, can generate sptial asynchrony even when all municipalities share the same time-varying transmission pattern $\delta(t)$.
 
 \section*{Discussion}
 
 Understanding mechanisms that drive spatiotemporal variation in epidemic dynamics is a major aim for infectious disease dynamics and control 
 \citep{pitzer2015environmental,dalziel2018urbanization,pons2018seasonality,baker2019epidemic,grenfell2001travelling,cummings2004travelling,viboud2006synchrony}.
-The large pertussis outbreaks in Korea that occurred between 2024 and 2025 presents a unique perspective on a fine-scale spatiotemporal asynchrony heterogeneity in epidemic dynamics: 
+The large pertussis outbreak in Korea that occurred between 2024 and 2025 presents a unique perspective on fine-scale spatiotemporal heterogeneity in epidemic dynamics: 
 some municipalities experienced two epidemic waves while other places experienced only the first or second without clear patterns of synchrony.
-I propose that this variation can be explained by the differences in introduction delays, contact variation, and susceptible host dynamics, where high levels of transmission can cause a large first wave and prevent the second wave through susceptible depletion.
+I propose that this variation can be explained by differences in introduction delays, contact variation, and susceptible host dynamics, where high levels of transmission can cause a large first wave and prevent the second wave through susceptible depletion.
 Incorporating this idea into a simple transmission model by allowing for a joint estimation of a shared transmission term confirms this hypothesis.
-Together, these findings shed light into mechanisms that can generate spatial asycnrhony in epidemic dynamics, offering a general framework for understanding the spatiotemporal dynamics of re-emerging infections.
+Together, these findings shed light on mechanisms that can generate spatial asynchrony in epidemic dynamics, offering a general framework for understanding the spatiotemporal dynamics of re-emerging infections.
+
+Although the main model used for parameter estimation is deterministic, the resulting inference still hints at the role of stochasticity in driving the observed spatial asynchrony. 
+Here, I distinguish between two phases of stochasticity that can affect the observed pertussis waves. 
+The first is stochasticity during initial establishment, which affects introduction timing and subsequent epidemic takeoff. \citep{grenfell2001travelling,hempel2020estimating,zhang2026reconstructing} 
+In reality, this process is largely stochastic, where introductions from other municipalities and local extinction determine when sustained local transmission begins. 
+The deterministic model provides a simple way to approximate this process, where a lower initial infected fraction corresponds to a later introduction and slower epidemic takeoff.
+As shown in Figure 5, this form of stochasticity is likely important for explaining the observed spatial asynchrony.
+
+The second is demographic stochasticity in transmission after the epidemic takes off \citep{finkenstadt2002stochastic,lloyd2005superspreading,magpantay2016pertussis}. 
+This alone appears insufficient to explain the observed dynamics, but it can still contribute to spatial heterogeneity in epidemic trajectories. 
+Therefore, I tentatively conclude that the observed spatial asynchrony is primarily driven by a combination of stochastic variation in introduction timing and deterministic variation in baseline transmission.
 
 Even though the model presented in this paper explains the observed dynamics reasonably well, there are several limitations to this work.
-First, the model is purely deterministic and does not account for stochasticity, which is likely an important factor for characterizing the establishment of infections after the initial invasion and the subsequent dynamics, especially in small populations \citep{finkenstadt2002stochastic,lloyd2005superspreading,magpantay2016pertussis}.
-Second, I estimated that variation in contact rates can explain the observed epidemic patterns, but I was unable to identify the mechanism that explains this variation.
-As an alternative hypothesis, I also considered the possibility that spatial asycnrhony can be explained by susceptible variation given the role of waning immunity in driving pertussis re-emergence \citep{wearing2009estimating,tan2015pertussis,domenech2018impact}.
+For example, I estimated that variation in contact rates can explain the observed epidemic patterns, but I was unable to identify the mechanism that explains this variation.
+As an alternative hypothesis, I also considered the possibility that spatial asynchrony can be explained by susceptible variation given the role of waning immunity in driving pertussis re-emergence \citep{wearing2009estimating,tan2015pertussis,domenech2018impact}.
 However, I still did not find a clear correlation between past vaccine coverage and estimated variation in susceptible fraction.
 Detailed serological data may allow us to test different model formulations and further quantify potential variation in population-level susceptibility \citep{mina2020global,nguyen2022enterovirus,nguyen2026dynamics}.
 
@@ -302,12 +352,12 @@ Resulting parameter estimates must be interpreted with care as the model relies 
 For example, the main model assumed the same values of initial susceptible fraction across all municipalities and tried to estimate separate basic reproduction number $\mathcal R_0$.
 Therefore, any regional variation in $S(0)$, driven by differences in vaccine coverage and waning, would be captured in the estimate of the $\mathcal R_0$.
 I also did not consider an age structure in the model, but age-structured contact patterns play an important role in shaping pertussis transmission \citep{rohani2010contact}.
-For example, \cite{cho2024pertussis} recently suggested transmission among elderly may contributed to the persistence of pertussis in Korea.
+For example, \cite{cho2024pertussis} recently suggested transmission among elderly may have contributed to the persistence of pertussis in Korea.
 Differences in age structure across regions may also contribute to variation in contact rates and population-level immunity \citep{britton2020mathematical}, but detailed age structured data would be needed to address these challenges.
 Despite these limitations, this work provides a quantitative foundation and empirical evidence for understanding epidemic asynchrony.
 
-The continued emergence of new pathogens and re-emergence of vaccine preventable infections, such as pertussis, highlights the importance of identifying hotspots of future outbreaks and developing targeted intervention strategies \citep{heymann2001hot,naguib2020towards,nguyen2022enterovirus}.
-The apparent asynchrony in pertussis epidemic in Korea, driven by the differences in introduction timing and contact rates, underlines the importance of detailed pathogen surveillance for early detection and strategic allocation of prevention and control resources.
+The continued emergence of new pathogens and re-emergence of vaccine-preventable infections, such as pertussis, highlights the importance of identifying hotspots of future outbreaks and developing targeted intervention strategies \citep{heymann2001hot,naguib2020towards,nguyen2022enterovirus}.
+The apparent asynchrony in pertussis epidemics in Korea, driven by differences in introduction timing and contact rates, underlines the importance of detailed pathogen surveillance for early detection and strategic allocation of prevention and control resources.
 Immunological surveillance platforms will be particularly useful for evaluating potential risk of pathogen re-emergence in the future \citep{mina2020global,nguyen2022enterovirus,nguyen2026dynamics}.
 A detailed understanding of spatial variation in contact patterns and population-level immunity will be crucial for predicting spatiotemporal dynamics of future outbreaks.
 
@@ -316,16 +366,18 @@ A detailed understanding of spatial variation in contact patterns and population
 \subsection*{Data}
 
 The weekly surveillance data on pertussis cases across 252 municipalities (1st week of 2024 to the 44th week of 2025) were obtained from a publicly available website, the Infectious Disease Portal, by the Korea Disease Control and Prevention Agency \citep{kordata}.
-Population size data as of September 2025 were obtained from publicly available website by the Ministry of the Interior and Safety \citep{kordata2}.
-Vaccine coverage data were obtained from a publicly available website by the Korea Disease Control and Prevention Agency \citep{kordata3}.
+Population size data as of September 2025 were obtained from a publicly available website by the Ministry of the Interior and Safety \citep{kordata2}.
+Municipality-level vaccine coverage data among 3-year-old children as of 2015 were obtained from a publicly available website maintained by the Korea Disease Control and Prevention Agency \citep{kordata3}.
+Because the Korean DTaP schedule recommends doses at 2, 4, 6, and 15--18 months, coverage among 3-year-old children was interpreted as coverage for the fourth DTaP dose.
+The 2015 data were used because they were the oldest vaccine coverage data publicly available at the municipality level.
 Longitude and latitude data for each municipality were obtained from a publicly available GitHub repository \citep{github1}.
 Finally, shape files used for constructing maps were obtained from a publicly available website \citep{shape}.
 
 \subsection*{Center of gravity}
 
-I quantified the center of gravity to characterize variation in the mean timing of epidemic.
+I quantified the center of gravity to characterize variation in the mean timing of the epidemic.
 Typically, the center of gravity is calculated based on annual incidence for recurrent epidemics.
-Since the paper focuses on analyzing a single outbreak, I used the entire time series of reported cases $C_t$ to computer the center of gravity for each municipality:
+Since the paper focuses on analyzing a single outbreak, I used the entire time series of reported cases $C_t$ to compute the center of gravity for each municipality:
 \begin{equation}
 \textrm{Center of gravity}=\frac{\sum_{t=1}^{\tsub{t}{max}} C_t \times t}{\sum_{t=1}^{\tsub{t}{max}} C_t}.
 \end{equation}
@@ -333,7 +385,7 @@ I then calculated the correlation coefficient between the center of gravity and 
 
 \subsection*{Spatial synchrony of reported cases}
 
-I characterized the spatial synchrony of pertussis epidemic, which captures changes in pairwise correlation as a function of distance \citep{grenfell2001travelling}. 
+I characterized the spatial synchrony of the pertussis epidemic, which captures changes in pairwise correlation as a function of distance \citep{grenfell2001travelling}. 
 I used logged values of reported cases between May 2024 and March 2025, excluding municipalities that had no reported cases ($n=250$).
 Spatial synchrony was calculated using the \texttt{ncf} package in R \citep{ncf}.
 I used 1,000 bootstraps to generate the median estimate and the corresponding 95\% confidence intervals.
@@ -365,7 +417,8 @@ where $\mathcal R_{t,m}$ represents $\mathcal R(t)$ estimate at time $t$ in muni
 $\alpha_m$ represents the municipality-specific intercept term;
 $\beta$ represents the effect of susceptible depletion;
 $d_{t,m}$ represents the cumulative cases at time $t$ in municipality $m$;
-and $s(t)$ represents the smooth term capturing temporal variation in transmission. 
+and $s(t)$ represents a nonparametric smooth function of time, capturing temporal variation in transmission.
+The smooth term $s(t)$ was estimated within the generalized additive model, and its estimation did not require a prespecified parametric form.
 For this analysis, I only used $\mathcal R(t)$ estimates from municipalities with more than 400 total cases.
 
 \subsection*{Transmission model}
@@ -385,12 +438,12 @@ I_m(t) &= I(t-\Delta t) -\Delta I_m(t) + \Delta E_m(t)
 \end{align}
 where $S_m(t)$, $E_m(t)$, and $I_m(t)$ represent the number of susceptible, exposed, and infectious individuals in municipality $m$ at time $t$, respectively;
 $N_m$ represents the population size of municipality $m$;
-$\Delta t$ represents the simulation time step, which assumed to be 1 week;
+$\Delta t$ represents the simulation time step, which was assumed to be 1 week;
 $\beta (t)$ represents the shared time-varying transmission rate;
 $\mathcal R_0$ represents the shared basic reproduction number \citep{anderson1991infectious};
 $\delta(t)$ represents the normalized time-varying transmission rate;
 $\sigma$ represents the rate at which individuals develop infectiousness, which is assumed to be $\sigma=-\log(1-7/8)$ such that the mean latent period is 8 days;
-and $\gamma$ represents the rate at which individuals recover, which is assumed to be $\sigma=-\log(1-7/15)$ such that the mean latent period is 15 days.
+and $\gamma$ represents the rate at which individuals recover, which is assumed to be $\gamma=-\log(1-7/15)$ such that the mean infectious period is 15 days.
 
 Here, I modeled changes in transmission using the $\delta(t)$ term, which is given a normal prior around 1:
 \begin{equation}
@@ -421,14 +474,14 @@ Finally, I estimated a municipality-specific initial infected fraction $i_m(0)$ 
 s(0) &\sim \textrm{Uniform}(0, 1),\\
 i_m(0) &\sim \textrm{Half-Normal}(0, 0.001).
 \end{align}
-Then, the initial conditions for the model is specified as follows:
+Then, the initial conditions for the model are specified as follows:
 \begin{align}
 S(0) &= N_m s(0),\\
 E_m(0) &= N_m i_m(0),\\
 I_m(0) &= N_m i_m(0).
 \end{align}
-I simultaneously fitted this model time series data between May 2024 and March 2025 from all municipalities with more than 400 total cases (a total of 42 municipalities) using a Bayesian inference software rstan using 4 chains, each with 2000 iterations \citep{carpenter2017stan}.
-Convergence was assess by ensuring low R-hat ($<1.01$), high effective sample size ($>800$), no divergent transitions, and no iterations that exceeded the maximum tree depth.
+I simultaneously fitted this model to time series data between May 2024 and March 2025 from all municipalities with more than 400 total cases (a total of 42 municipalities) using the Bayesian inference software rstan with 4 chains, each with 2000 iterations \citep{carpenter2017stan}.
+Convergence was assessed by ensuring low R-hat ($<1.01$), high effective sample size ($>800$), no divergent transitions, and no iterations that exceeded the maximum tree depth.
 
 To assess the model fit, I computed R squared values for each municipality. 
 This is done by calculating the squared value of the correlation coefficient between logged values of the observed cases+1 and a posterior median of the logged predictions $\rho_m \Delta S_m(t)$.
@@ -436,22 +489,22 @@ This is done by calculating the squared value of the correlation coefficient bet
 Finally, I evaluated the impact of initial conditions on pertussis epidemic dynamics by varying $\mathcal R_0$ between $14.2$ and $22.2$ and $i(0)$ between $5\times 10^{-6}$ and $2.3\times 10^{-3}$.
 For each simulation, I quantified the center of gravity.
 
-As an alternative hypothesis, I also considered a model assuming identical $\mathcal R_0$ across municipality and estimated a municipality-specific initial susceptible fraction $s_m(0)$.
-Same prior distributions were used for this analysis.
+As an alternative hypothesis, I also considered a model assuming identical $\mathcal R_0$ across municipalities and estimated a municipality-specific initial susceptible fraction $s_m(0)$.
+The same prior distributions were used for this analysis.
 
 \subsection*{Transmission model validation}
 
-I validated the model by fitting the model to remaining municipalities (i.e., those with less than 400 total cases).
-In doing so, I assumed that changes in transmission rate $\delta(t)$ is known and only estimate the initial conditions, $s(0)$ and $i_m(0)$, basic reproduction number $\mathcal R_{0,m}$, and the reporting rate $\rho_m$.
+I validated the model by fitting the model to the remaining municipalities (i.e., those with less than 400 total cases).
+In doing so, I assumed that changes in transmission rate $\delta(t)$ were known and only estimated the initial conditions, $s(0)$ and $i_m(0)$, basic reproduction number $\mathcal R_{0,m}$, and the reporting rate $\rho_m$.
 For this validation, I used the optimization function in rstan \citep{carpenter2017stan} rather than performing a full Bayesian inference.
 Then, I computed R squared values for each municipality in the same way as before.
 
 \subsection*{Relationship between estimated initial susceptible and vaccine coverage}
 
 I assessed the relationship between estimated initial susceptible from the alternative model and vaccine coverage using linear regression.
-Specifically, assuming that the waning of vaccinal immunity is the main cause for pertussis re-emergence, I compared DTaP (Diphtheria-Tetanus-Pertussis) vaccine coverage for 3 years old as of 2015 and the estimated initial susceptible in each municipality and performed a linear regression.
+Specifically, assuming that the waning of vaccinal immunity is the main cause for pertussis re-emergence, I compared DTaP (Diphtheria-Tetanus-Pertussis) vaccine coverage for 3-year-old children as of 2015 and the estimated initial susceptible fraction in each municipality and performed a linear regression.
 I used vaccine coverage as of 2015 because this was the oldest data that were publicly available.
-I considered using estimates from municipalities with $>400$ cases, since the parameter estimates are expected to be more reliable, but were unable to find any clear signature between vaccine coverage and estimated $s(0)$.
+I considered using estimates from municipalities with $>400$ cases, since the parameter estimates are expected to be more reliable, but was unable to find any clear signature between vaccine coverage and estimated $s(0)$.
 
 \section*{Acknowledgements}
 

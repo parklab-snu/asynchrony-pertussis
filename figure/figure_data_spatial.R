@@ -1,7 +1,8 @@
 library(dplyr)
 library(sf)
 library(geosphere)
-library(ggplot2); theme_set(theme_bw(base_family = "Times"))
+library(ggplot2); theme_set(theme_bw(base_family = "Times", base_size=16))
+library(ggspatial)
 library(egg)
 library(gridExtra)
 source("../script/script_data.R")
@@ -42,7 +43,8 @@ g2 <- ggplot(pertussis_korea_spatial_arr) +
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank(),
     axis.text.x = element_text(angle=45, hjust=1),
-    axis.title.x = element_blank()
+    axis.title.x = element_blank(),
+    legend.key.height = unit(1.2, "cm")
   )
 
 gcomb1 <- ggarrange(g1, g2, nrow=2, heights=c(1, 3),
@@ -90,9 +92,16 @@ g3 <- ggplot(map_korea_ssg_df_cases) +
   scale_fill_viridis_c("Cases per 100,000", option="B", end=0.8,
                        breaks=c(0, 100, 200, 300, 400),
                        labels=c(0, 100, 200, 300, ">400")) +
+  annotation_scale(
+    location = "br",
+    width_hint = 0.25,
+    unit_category = "metric",
+    text_cex = 0.7,
+    line_width = 0.3
+  ) +
   scale_y_continuous(expand=c(0, 0)) +
   guides(fill=guide_colorbar(title.position = 'bottom')) +
-  coord_quickmap() +
+  coord_sf(datum = NA) +
   theme(
     legend.position = "bottom",
     panel.grid = element_blank(),
@@ -108,11 +117,11 @@ g4 <- ggplot(map_korea_ssg_df_cases) +
   geom_polygon(aes(x=long, y=lat, group = group, fill=cog))+
   scale_fill_gradientn("Center of gravity", colors=c("#D55E00", "#56B4E9", "#009E73"),
                        na.value = "gray20",
-                       breaks=month_break[3:9],
-                       labels=month_label_nl[3:9]) +
+                       breaks=month_break[c(3, 5, 7, 9)],
+                       labels=month_label_dense_nl[c(3, 5, 7, 9)]) +
   scale_y_continuous(expand=c(0, 0)) +
   guides(fill=guide_colorbar(title.position = 'bottom')) +
-  coord_quickmap() +
+  coord_sf(datum = NA) +
   theme(
     legend.position = "bottom",
     panel.grid = element_blank(),
@@ -146,8 +155,8 @@ g5 <- ggplot(pertussis_korea_spatial_region1) +
   geom_line(aes(time, cases/pop*1e5)) +
   geom_point(aes(time, cases/pop*1e5), size=0.5) +
   scale_x_continuous("Year", expand=c(0, 0),
-                     breaks=month_break[c(1, 3, 5, 7, 9, 11)],
-                     labels=month_label_nl[c(1, 3, 5, 7, 9, 11)],
+                     breaks=month_break[c(1, 5, 9)],
+                     labels=month_label_dense_nl[c(1, 5, 9)],
                      limits=c(2024-1/104, 2025+44/52+1/104)) +
   scale_y_continuous("Cases per 100,000", expand=c(0, 0)) +
   facet_wrap(~region_eng, nrow=1) +
@@ -179,15 +188,16 @@ g6 <- ggplot(analysis_synchrony) +
   )
 
 g7 <- ggplot(pertussis_korea_SIG %>% filter(is.finite(min_time))) +
+  geom_abline(intercept=0, slope=1, lty=2) +
   geom_point(aes(min_time, cog), shape=21) +
   geom_smooth(aes(min_time, cog), method="lm",
               fullrange=TRUE, color="#EF6351", fill="#EF6351") +
   scale_x_continuous("Timing of introduction",
-                     breaks=month_break,
-                     labels=month_label_nl, expand=c(0, 0), limits=c(2023, 2026)) +
+                     breaks=month_break[c(1,3,5,7,9,11)],
+                     labels=month_label_dense_nl[c(1,3,5,7,9,11)], expand=c(0, 0), limits=c(2023, 2026)) +
   scale_y_continuous("Center of gravity", expand=c(0, 0), limits=c(2023, 2026),
-                     breaks=month_break,
-                     labels=month_label_nl) +
+                     breaks=month_break[c(1,3,5,7,9,11)],
+                     labels=month_label_dense_nl[c(1,3,5,7,9,11)]) +
   scale_size_area("Population\nsize") +
   coord_cartesian(xlim=c(2023.95, 2024.95), ylim=c(2024.3, 2025.5)) +
   theme(
@@ -199,7 +209,7 @@ g7 <- ggplot(pertussis_korea_SIG %>% filter(is.finite(min_time))) +
 gcomb4 <- ggarrange(g5, g6, g7, labels=c("C", "F", "G"), nrow=1, widths=c(3, 1, 1))
 
 gfinal <- arrangeGrob(gcomb1, gcomb2, nrow=1, widths=c(1, 1))
-gfinal3 <- arrangeGrob(gfinal, gcomb4, nrow=2, heights=c(2, 1))
+gfinal3 <- arrangeGrob(gfinal, gcomb4, nrow=2, heights=c(2, 1.3))
 
-ggsave("figure_data_spatial.pdf", gfinal3, width=15, height=8)
-ggsave("figure_data_spatial.png", gfinal, width=15, height=8)
+ggsave("figure_data_spatial.pdf", gfinal3, width=12, height=8)
+ggsave("figure_data_spatial.png", gfinal3, width=12, height=8)

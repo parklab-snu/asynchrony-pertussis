@@ -44,6 +44,13 @@ month_label <- c(
 
 month_label_nl <- gsub(", ", "\n", month_label)
 
+month_label_dense <- c(
+  paste0(c("Feb", "Apr", "Jun", "Aug", "Oct", "Dec"), ", '24"),
+  paste0(c("Feb", "Apr", "Jun", "Aug", "Oct", "Dec"), ", '25")  
+)
+
+month_label_dense_nl <- gsub(", ", "\n", month_label_dense)
+
 korea_main_loc <- pertussis_korea_spatial %>%
   filter(region1 %in% c("서울", "부산", "대구", "인천",
                         "광주", "대전", "울산", "제주",

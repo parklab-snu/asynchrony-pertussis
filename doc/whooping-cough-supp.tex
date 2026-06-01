@@ -90,7 +90,7 @@
 
 \begin{document}
 
-\section*{Supplementary Figures}
+\section*{Supplementary Materials}
 
 \begin{flushleft}{
 	\Large
@@ -108,6 +108,26 @@ Sang Woo Park\textsuperscript{1,*}
 
 *Corresponding author: sangwoopark@snu.ac.kr
 \end{flushleft}
+
+\section*{Supplementary Text}
+
+\subsection*{S1 Stochastic simulation}
+
+I considered a stochastic version of the SEIR model:
+\begin{align}
+\beta (t) &= \mathcal R_0 (1-\exp(-\gamma\Delta t)) \delta(t)\\
+\textrm{FOI}(t) &= \frac{\beta (t) I_m(t-\Delta t)}{N_m}\\
+\Delta S_m(t) &\sim \mathrm{Binomial}\left(S_m(t-\Delta t), 1- \exp(-\textrm{FOI}(t) \Delta t)\right) \\
+\Delta E_m(t) &\sim \mathrm{Binomial}\left(E_m(t-\Delta t), 1- \exp(-\sigma \Delta t)\right)\\
+\Delta I_m(t) &\sim \mathrm{Binomial}\left(I_m(t-\Delta t), 1- \exp(-\gamma \Delta t)\right)\\
+S_m(t) &= S(t-\Delta t) -\Delta S_m(t)\\
+E_m(t) &= E(t-\Delta t) -\Delta E_m(t) + \Delta S_m(t)\\
+I_m(t) &= I(t-\Delta t) -\Delta I_m(t) + \Delta E_m(t)
+\end{align}
+
+\pagebreak
+
+\section*{Supplementary Figure}
 
 \setcounter{figure}{0}
 \renewcommand{\thefigure}{S\arabic{figure}}
