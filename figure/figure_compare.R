@@ -78,17 +78,14 @@ pardata <- data.frame(
   time=rep(data_spread$time, each=standata$Nregion)
 )
 
-ggplot(pardata) +
+g2 <- ggplot(pardata) +
   geom_point(aes(R0, S0)) +
   scale_x_continuous("Basic reproduction number (original model)") +
-  scale_y_continuous("Initial susceptible fraction (alternative model)")
+  scale_y_continuous("Initial susceptible fraction (alternative model)") +
+  theme(
+    panel.grid = element_blank()
+  )
 
-ggplot(pardata) +
-  geom_point(aes(I0_R0, I0)) +
-  geom_abline(intercept=0, slope=1, lty=2) +
-  scale_x_log10() +
-  scale_y_log10()
+cor(pardata$S0, pardata$R0)
 
-ggplot(pardata) +
-  geom_point(aes(rho_R0, rho)) +
-  geom_abline(intercept=0, slope=1, lty=2) 
+ggsave("figure_compare_supp_2.pdf", g2, width=4, height=4)
