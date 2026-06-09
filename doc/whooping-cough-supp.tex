@@ -113,17 +113,22 @@ Sang Woo Park\textsuperscript{1,*}
 
 \subsection*{S1 Stochastic simulation}
 
-I considered a stochastic version of the SEIR model:
+A stochastic version of the SEIR model is implemented based on the Euler-multinomial scheme \citep{king2016statistical}:
 \begin{align}
-\beta (t) &= \mathcal R_0 (1-\exp(-\gamma\Delta t)) \delta(t)\\
-\textrm{FOI}(t) &= \frac{\beta (t) I_m(t-\Delta t)}{N_m}\\
-\Delta S_m(t) &\sim \mathrm{Binomial}\left(S_m(t-\Delta t), 1- \exp(-\textrm{FOI}(t) \Delta t)\right) \\
+\beta_m (t) &= \mathcal R_{0,m} (1-\exp(-\gamma\Delta t)) \delta(t)\\
+\textrm{FOI}_m(t) &= \frac{\beta_m (t) I_m(t-\Delta t)}{N_m}\\
+\Delta S_m(t) &\sim \mathrm{Binomial}\left(S_m(t-\Delta t), 1- \exp(-\textrm{FOI}_m(t) \Delta t)\right) \\
 \Delta E_m(t) &\sim \mathrm{Binomial}\left(E_m(t-\Delta t), 1- \exp(-\sigma \Delta t)\right)\\
 \Delta I_m(t) &\sim \mathrm{Binomial}\left(I_m(t-\Delta t), 1- \exp(-\gamma \Delta t)\right)\\
-S_m(t) &= S(t-\Delta t) -\Delta S_m(t)\\
-E_m(t) &= E(t-\Delta t) -\Delta E_m(t) + \Delta S_m(t)\\
-I_m(t) &= I(t-\Delta t) -\Delta I_m(t) + \Delta E_m(t)
+S_m(t) &= S_m(t-\Delta t) -\Delta S_m(t)\\
+E_m(t) &= E_m(t-\Delta t) -\Delta E_m(t) + \Delta S_m(t)\\
+I_m(t) &= I_m(t-\Delta t) -\Delta I_m(t) + \Delta E_m(t)
 \end{align}
+The observation model is assumed to follow the Poisson distribution: 
+\begin{align}
+\mathrm{cases}_{t,m} &\sim \mathrm{Poisson}(\rho_m \Delta S_m(t)).
+\end{align}
+All parameters are defined as in the deterministic model.
 
 \pagebreak
 
@@ -242,6 +247,25 @@ Each point represents the estimated posterior median for the basic reproduction 
 
 \pagebreak
 
+
+\begin{figure}[!th]
+\includegraphics[width=0.9\textwidth]{../figure/figure_R_t_nb_db.pdf}
+\caption{
+\textbf{Sensitivity analysis of spatial variation in the estimates of effective reproduction number assuming longer serial intervals.}
+(A) Each black line represents the estimated effective reproduction number for a given municipality with more than 400 total cases. 
+The red solid line and shaded regions represent the median and 95\% quantiles of effective reproduction number estimates.
+(B) Relationship between correlation coefficient for $\mathcal R(t)$ and correlation coefficient for reported cases across all pairwise municipality combinations with more than 400 total cases.
+(C) Spatial synchrony in $\mathcal R(t)$ (red) versus logged cases (black) as a function of distance.
+The solid line and shaded regions represent the median estimate and the corresponding 95\% confidence interval.
+The dashed horizontal line represents the mean correlation.
+(D) Estimated multiplicative effects on $\mathcal R(t)$ from the regression analysis.
+The blue shaded violin represents the distribution of intercept effect, where a separate intercept term is estimated for each municipality.
+The red lines represent the estimated susceptible depletion effect for each municipality.
+The orange line and shaded regions represent the estimated changes in transmission from a smooth term and the corresponding 95\% confidence interval.
+}
+\end{figure}
+
+\pagebreak
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{../figure/figure_stanfit_region_R0_nb.pdf}

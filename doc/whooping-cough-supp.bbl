@@ -1,0 +1,8 @@
+\begin{thebibliography}{1}
+
+\bibitem{king2016statistical}
+Aaron~A King, Dao Nguyen, and Edward~L Ionides.
+\newblock {Statistical inference for partially observed Markov processes via the R package pomp}.
+\newblock {\em Journal of Statistical Software}, 69:1--43, 2016.
+
+\end{thebibliography}
