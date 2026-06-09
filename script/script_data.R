@@ -85,3 +85,5 @@ data_region_eng <- data.frame(
 )
 
 vacc_2015 <- read.csv("../data_processed/vacc_2015.csv")
+
+data_processed_age <- read.csv("../data_processed/data_processed_age.csv")
