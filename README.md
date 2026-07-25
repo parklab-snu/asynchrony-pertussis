@@ -7,6 +7,7 @@ This repository contains all code and data used for the analysis.
 * `R`: contains an R script for simulating deterministic and stochastic SEIR models
 * `analysis_R_t`: contains an R script for estimating Rt
 * `analysis_S0`: contains an R script for summarizing parameter estimates
+* `analysis_stoch`: contains an R script for simulating stochastic models
 * `analysis_synchrony`: contains an R script for calculating spatial synchrony
 * `compare_model`: contains an R script for model comparison
 * `data`: contains time series data for pertussis cases, population size data, and coordinate data
@@ -15,8 +16,8 @@ This repository contains all code and data used for the analysis.
 * `doc`: contains latex files for the manuscript
 * `script`: contains an R script for processing data
 * `simulate`: contains R scripts for simulating the fitted SEIR model
-* `stanfit_sirs`: contains R scripts for fitting SEIR model using Stan
-* `stanmodel`: constrains stan scripts for deterministic models 
+* `stanfit`: contains R scripts for fitting SEIR model using Stan
+* `stanmodel`: constrains Stan scripts for deterministic models 
 
 ------
 
