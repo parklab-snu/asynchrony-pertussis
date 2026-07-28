@@ -1,5 +1,7 @@
 # Delayed introduction, transmission variation, and susceptible dynamics explain spatial asynchrony during Korea's large pertussis outbreak
 
+[![DOI](https://zenodo.org/badge/1092955605.svg)](https://doi.org/10.5281/zenodo.21640529)
+
 ------
 
 This repository contains all code and data used for the analysis.
